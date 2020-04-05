@@ -1,0 +1,1 @@
+insert into item values ('1', 'furniture', 'image', 'mcnultys', 90.00, 'Chair');

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dao.ItemRepo;
 import com.example.demo.model.Item;
 
-@RestController
+
 @Controller
 public class ItemController {
 
@@ -25,7 +25,7 @@ public class ItemController {
 	public String home()
 	{
 		System.out.println("hi");
-		return "home.jsp";
+		return "home";
 	}
 //	
 //	@GetMapping(path="/items")
@@ -36,7 +36,7 @@ public class ItemController {
 //	}
 	
 	@PutMapping("/item")
-	public Item saveOrUpdateAlien(@RequestBody Item item)
+	public Item saveOrUpdateItem(@RequestBody Item item)
 	{
 		itemRepo.save(item);
 		return item;
