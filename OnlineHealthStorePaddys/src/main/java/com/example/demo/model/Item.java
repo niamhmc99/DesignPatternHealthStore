@@ -9,27 +9,28 @@ public class Item {
 	@Id
 	@GeneratedValue
 	private int itemId;
-	private String title, manufacturer, category;
+	private String title, manufacturer, category, image;
 	private double price;
 	
 	
-	public Item(int id, String title, String manufacturer, String category, double price) {
+	public Item(int itemId, String title, String manufacturer, String category, double price, String image) {
 		super();
-		this.itemId = id;
+		this.itemId = itemId;
 		this.title = title;
 		this.manufacturer = manufacturer;
 		this.category = category;
 		this.price = price;
+		this.image =image;
 	}
 	public Item() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public int getId() {
+	public int getItemId() {
 		return itemId;
 	}
-	public void setId(int id) {
-		this.itemId = id;
+	public void setItemId(int itemId) {
+		this.itemId = itemId;
 	}
 	public String getTitle() {
 		return title;
@@ -54,5 +55,11 @@ public class Item {
 	}
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 }

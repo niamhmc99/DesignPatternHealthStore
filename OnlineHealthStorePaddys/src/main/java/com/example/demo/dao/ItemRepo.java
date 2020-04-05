@@ -1,5 +1,11 @@
 package com.example.demo.dao;
 
-public interface ItemRepo {
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.model.Item;
+
+@Repository
+public interface ItemRepo extends CrudRepository<Item, Integer>{
 
 }
