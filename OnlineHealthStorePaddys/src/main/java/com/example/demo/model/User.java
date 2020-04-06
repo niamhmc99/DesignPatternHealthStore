@@ -1,14 +1,7 @@
 package com.example.demo.model;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import java.util.Set;
+import javax.persistence.*;
 
 @Entity
 public class User {
@@ -17,21 +10,22 @@ public class User {
 	@GeneratedValue
 	int userId;
 	String userName, password, email, address, payment;
+	@Transient
+	private String passwordConfirm;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+
+	@ManyToMany
+	private Set<Role> roles;
+	
+//	(cascade = CascadeType.ALL)
 //	@JoinTable(name = "USER_ROLES", joinColumns={
 //			@JoinColumn(name = "USER_EMAIL", referencedColumnName = "email") }, inverseJoinColumns = {
 //					@JoinColumn(name = "ROLE_NAME", referencedColumnName = "name") })
-	private List<Role> roles;
-	
-	
-	
 	public User () {
 		
 	}
-	
-	
-	public User(int userId, String userName, String password, String email, String address, String payment) {
+		
+	public User(int userId, String userName, String password, String passwordConfirm, String email, String address, String payment) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
@@ -58,6 +52,13 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	  public String getPasswordConfirm() {
+	        return passwordConfirm;
+	    }
+
+	    public void setPasswordConfirm(String passwordConfirm) {
+	        this.passwordConfirm = passwordConfirm;
+	    }
 	public String getEmail() {
 		return email;
 	}
@@ -77,6 +78,15 @@ public class User {
 		this.payment = payment;
 	}
 	
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
 	
 
 }

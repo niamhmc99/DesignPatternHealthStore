@@ -11,6 +11,6 @@ import com.example.demo.model.User;
 @Repository
 public interface UserRepo extends CrudRepository<User, Integer>{
 	
-	List<User> findByUsername(String name);
+	User findByUsername(String userName);
 
 }
