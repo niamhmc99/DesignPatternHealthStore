@@ -9,7 +9,7 @@ public class User {
 	@Id 
 	@GeneratedValue
 	int userId;
-	String userName, password, email, address, payment;
+	String username, password, email, address, payment;
 	@Transient
 	private String passwordConfirm;
 	
@@ -25,10 +25,10 @@ public class User {
 		
 	}
 		
-	public User(int userId, String userName, String password, String passwordConfirm, String email, String address, String payment) {
+	public User(int userId, String username, String password, String passwordConfirm, String email, String address, String payment) {
 		super();
 		this.userId = userId;
-		this.userName = userName;
+		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.address = address;
@@ -40,11 +40,11 @@ public class User {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getPassword() {
 		return password;

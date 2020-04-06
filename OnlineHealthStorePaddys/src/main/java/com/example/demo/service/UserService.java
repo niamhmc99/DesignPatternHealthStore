@@ -3,7 +3,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.model.User;
 
-@Service
 public interface UserService {
 	
 	  void save(User user);
