@@ -7,7 +7,8 @@
 <html>
   <head>
       <meta charset="utf-8">
-      <title>Create an account</title>
+      <title>Welcome to the Health Food Store!
+      			Please Create an account</title>
 
       <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
       <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
@@ -65,7 +66,7 @@
                     <form:errors path="payment"></form:errors>
                 </div>
             </spring:bind>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
         </form:form>
 
     </div>

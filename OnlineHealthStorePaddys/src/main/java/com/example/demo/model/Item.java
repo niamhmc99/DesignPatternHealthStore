@@ -11,9 +11,11 @@ public class Item {
 	private int itemId;
 	private String title, manufacturer, category, image;
 	private double price;
+    private long available;
+
 	
 	
-	public Item(int itemId, String title, String manufacturer, String category, double price, String image) {
+	public Item(int itemId, String title, String manufacturer, String category, double price, String image, long available) {
 		super();
 		this.itemId = itemId;
 		this.title = title;
@@ -21,6 +23,7 @@ public class Item {
 		this.category = category;
 		this.price = price;
 		this.image =image;
+		this.available=available;
 	}
 	public Item() {
 		super();
@@ -61,5 +64,11 @@ public class Item {
 	}
 	public void setImage(String image) {
 		this.image = image;
+	}
+	public long getAvailable() {
+		return available;
+	}
+	public void setAvailable(long available) {
+		this.available = available;
 	}
 }

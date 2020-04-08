@@ -3,7 +3,10 @@ package com.example.demo.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
@@ -11,10 +14,12 @@ import javax.persistence.ManyToMany;
 public class Role {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
 	private String role;
 	
 	//To create relationship with user 
-	@ManyToMany(mappedBy="roles")
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy="roles")
 	private Set<User> users;
 	
 	public Role() {

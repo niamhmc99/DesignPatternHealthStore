@@ -1,7 +1,11 @@
 package com.example.demo.model;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 public class User {
@@ -14,13 +18,15 @@ public class User {
 	private String passwordConfirm;
 	
 
-	@ManyToMany
-	private Set<Role> roles;
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<Role> roles;
 	
-//	(cascade = CascadeType.ALL)
-//	@JoinTable(name = "USER_ROLES", joinColumns={
-//			@JoinColumn(name = "USER_EMAIL", referencedColumnName = "email") }, inverseJoinColumns = {
-//					@JoinColumn(name = "ROLE_NAME", referencedColumnName = "name") })
+	
+	 @LazyCollection(LazyCollectionOption.FALSE)
+	    @ManyToMany(cascade = CascadeType.ALL)
+	    private List<Item> items_purchased = new ArrayList<Item>();
+	
+
 	public User () {
 		
 	}
@@ -78,13 +84,21 @@ public class User {
 		this.payment = payment;
 	}
 	
-	public Set<Role> getRoles() {
+	public List<Role> getRoles() {
 		return roles;
 	}
 
 
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
+	public void setRoles(List<Role> hashSet) {
+		this.roles = hashSet;
+	}
+
+	public List<Item> getItems_purchased() {
+		return items_purchased;
+	}
+
+	public void setItems_purchased(List<Item> items_purchased) {
+		this.items_purchased = items_purchased;
 	}
 
 	

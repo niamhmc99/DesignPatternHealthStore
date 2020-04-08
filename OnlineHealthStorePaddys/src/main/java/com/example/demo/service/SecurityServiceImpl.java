@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.interfaces.SecurityService;
+
 @Service
 public class SecurityServiceImpl implements SecurityService{
 
@@ -35,7 +37,6 @@ public class SecurityServiceImpl implements SecurityService{
 
 	@Override
 	public void autoLogin(String username, String password) {
-		// TODO Auto-generated method stub
 		UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
 
