@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.interfaces.SecurityService;
 import com.example.demo.model.User;
@@ -63,6 +64,15 @@ public class UserController {
     public String welcome(Model model) {
         return "welcome";
     }
+    
+    @GetMapping({"/users"})
+    public String listUsers(Model model,  @RequestParam(defaultValue="")  String name) {
+		model.addAttribute("users", userService.findAll());
+		System.out.println(model.addAttribute("users", userService.findAll()));
+		return "listOfUsers";
+	}
+    
+    
 	
 
 }
