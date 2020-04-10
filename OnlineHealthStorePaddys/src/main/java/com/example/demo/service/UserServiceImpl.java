@@ -1,21 +1,17 @@
 package com.example.demo.service;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.ItemRepo;
 import com.example.demo.dao.RoleRepo;
 import com.example.demo.dao.UserRepo;
+import com.example.demo.interfaces.UserService;
 import com.example.demo.model.Item;
 import com.example.demo.model.Role;
 import com.example.demo.model.User;
@@ -30,7 +26,6 @@ public class UserServiceImpl implements UserService{
 	    private RoleRepo roleRepo;
 	    @Autowired 
 	    private ItemRepo itemRepo;
-	    
 	    @Autowired
 	    private BCryptPasswordEncoder bCryptPasswordEncoder;
 	    

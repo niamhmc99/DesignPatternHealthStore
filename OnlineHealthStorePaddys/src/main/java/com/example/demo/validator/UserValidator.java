@@ -6,8 +6,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import com.example.demo.interfaces.UserService;
 import com.example.demo.model.User;
-import com.example.demo.service.UserService;
 
 @Component
 public class UserValidator implements Validator{
