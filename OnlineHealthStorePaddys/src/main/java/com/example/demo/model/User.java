@@ -20,11 +20,13 @@ public class User {
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Role> roles;
+	 
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+	private ShoppingCart shoppingCart; 
 	
-	
-	 @LazyCollection(LazyCollectionOption.FALSE)
-	    @ManyToMany(cascade = CascadeType.ALL)
-	    private List<Item> items_purchased = new ArrayList<Item>();
+//	 @LazyCollection(LazyCollectionOption.FALSE)
+//	    @ManyToMany(cascade = CascadeType.ALL)
+//	    private List<Item> items_purchased = new ArrayList<Item>();
 	
 
 	public User () {
@@ -93,13 +95,14 @@ public class User {
 		this.roles = hashSet;
 	}
 
-	public List<Item> getItems_purchased() {
-		return items_purchased;
+	public ShoppingCart getShoppingCart() {
+		return shoppingCart;
 	}
 
-	public void setItems_purchased(List<Item> items_purchased) {
-		this.items_purchased = items_purchased;
+	public void setShoppingCart(ShoppingCart shoppingCart) {
+		this.shoppingCart = shoppingCart;
 	}
+
 
 	
 

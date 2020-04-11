@@ -47,13 +47,13 @@ public class ItemController {
 	{
 		return "home";
 	}
-	
-	@RequestMapping("/item/{id}")
-	public Optional<Item> getAlien(@PathVariable("id")int itemId)
-	{
-		return itemRepo.findById(itemId);
-		
-	}
+//	
+//	@RequestMapping("/item/{id}")
+//	public Optional<Item> getAlien(@PathVariable("id")int itemId)
+//	{
+//		return itemRepo.findById(itemId);
+//		
+//	}
 	
 	
 //	@GetMapping(path="/items")

@@ -12,4 +12,7 @@ public interface ItemRepo extends CrudRepository<Item, Integer>{
 
 	List<Item> findByTitle(String title);
 
+
+	Item findByItemId(int itemId);
+
 }

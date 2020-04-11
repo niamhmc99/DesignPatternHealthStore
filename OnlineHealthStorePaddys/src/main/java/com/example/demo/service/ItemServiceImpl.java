@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,5 +44,11 @@ public class ItemServiceImpl implements ItemService{
 //			item.setStock(stockLevel);
 //			this.addItem(item);
 //		}
+	}
+
+	@Override
+	public Item findItemById(int itemId) {
+		// TODO Auto-generated method stub
+		return itemRepo.findByItemId(itemId);
 	}
 }

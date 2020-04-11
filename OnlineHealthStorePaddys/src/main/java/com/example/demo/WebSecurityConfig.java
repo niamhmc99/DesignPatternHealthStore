@@ -26,6 +26,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Qualifier("userDetailsServiceImpl")
     @Autowired
     private UserDetailsService userDetailsService;
+	
+	   @Bean
+	    public AuthenticationManager customAuthenticationManager() throws Exception {
+	        return authenticationManager();
+	    }
+	    @Autowired
+	    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+	        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
+	    }
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -38,7 +47,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
                 .antMatchers("/resources/**", "/registration").permitAll()
                 .antMatchers("/").permitAll()
-        		.antMatchers("/admin").hasAnyRole("USER,ADMIN")
+        		.antMatchers("/admin").hasAnyRole("ROLE_ADMIN")
+        		.antMatchers("/orderList","/order", "/accountInfo", "/item").access("hasAnyRole('ROLE_ADMIN')")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -46,7 +56,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
             .logout()
-                .permitAll();
+                .permitAll()
+                .and()
+            .exceptionHandling()
+            	.accessDeniedPage("/error");
+        
+        // The pages requires login as ADMIN.
+        // If no login, it will redirect to /login page.
+//        http.authorizeRequests().antMatchers("/orderList","/order", "/accountInfo")//
+//                .access("hasAnyRole('ROLE_ADMIN')");
+        
+        // For ADMIN only.
+      //  http.authorizeRequests().antMatchers("/item").access("hasRole('ROLE_ADMIN')");
+  
+        // When the user has logged in as XX.
+        // But access a page that requires role YY,
+        // AccessDeniedException will throw.
+       // http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/error");
     }
     
 //	protected void configure(HttpSecurity http) throws Exception {
@@ -70,14 +96,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 ////		.and().exceptionHandling().accessDeniedPage("/access_denied");
 //	}
 
-    @Bean
-    public AuthenticationManager customAuthenticationManager() throws Exception {
-        return authenticationManager();
-    }
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
-    }
+ 
 //
 //    @Autowired
 //    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

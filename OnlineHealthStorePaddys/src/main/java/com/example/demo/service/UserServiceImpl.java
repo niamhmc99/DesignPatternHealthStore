@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService{
 			user.setRoles(roles);
 			save(user);
 		}
-
+	
 	@Override
 	public void save(User user) {
 		// TODO Auto-generated method stub
@@ -124,7 +124,7 @@ public class UserServiceImpl implements UserService{
 	                    if (thisItem.getAvailable() > 0) {
 	                    	thisItem.setAvailable(thisItem.getAvailable() - 1);
 //	                        bookuserDAO.save(thisBook);
-	                        user1.getItems_purchased().add(thisItem);
+	                        //user1.getItems_purchased().add(thisItem);
 	                        itemArrayList.add(thisItem);
 //	                        user1 = dao.save(user1);
 	                    } else {
@@ -148,6 +148,8 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
         return userRepo.findByUsername(username);
 	}
+
+	
 
 //	@Override
 //	public List<User> checkEmail(String email) {

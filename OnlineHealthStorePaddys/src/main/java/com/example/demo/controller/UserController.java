@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.interfaces.SecurityService;
-import com.example.demo.interfaces.UserService;
 import com.example.demo.model.User;
 import com.example.demo.service.UserServiceImpl;
 import com.example.demo.validator.UserValidator;
