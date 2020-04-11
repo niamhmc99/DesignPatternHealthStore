@@ -13,3 +13,6 @@ insert into user_roles(users_user_id, roles_id) values
 (1,2),
 (3,2),
 (4,2);
+
+
+insert into item values ('1', true, 'furniture','image', 'mcnultys', 90.00, 'Chair'); 

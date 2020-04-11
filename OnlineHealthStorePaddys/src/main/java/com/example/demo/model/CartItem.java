@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +20,7 @@ public class CartItem {
 	private int quantity;
 	private double price;
 	
-	@ManyToOne
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name="itemId")
 	private Item item;
 	

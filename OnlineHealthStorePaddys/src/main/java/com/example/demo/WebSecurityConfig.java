@@ -36,13 +36,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
                 .antMatchers("/resources/**", "/registration", "/welcome").permitAll()
-        		.antMatchers("/profile").hasAnyRole("ROLE_ADMIN, ROLE_USER")
-        		.antMatchers("/orderList","/order", "/accountInfo", "/addItem", "/getAllItems" ).access("hasAnyRole('ROLE_ADMIN')")
+        		.antMatchers("/profile", "/getAllItems" ).hasAnyRole("ROLE_ADMIN, ROLE_USER")
+        		.antMatchers("/orderList","/order", "/accountInfo", "/addItem").access("hasAnyRole('ROLE_ADMIN')")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()

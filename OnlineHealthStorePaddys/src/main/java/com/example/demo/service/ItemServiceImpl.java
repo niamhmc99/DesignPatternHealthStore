@@ -32,7 +32,7 @@ public class ItemServiceImpl implements ItemService{
 
 	public List<Item> findByTitle(String title) {
 		// TODO Auto-generated method stub
-		return itemRepo.findByTitle("%" + title + "%");
+		return itemRepo.findByTitle(title);
 	}
 	
 	public void updateStock(ArrayList<Item> cartItems) {

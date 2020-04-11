@@ -15,4 +15,7 @@ public interface ItemRepo extends CrudRepository<Item, Integer>{
 
 	Item findByItemId(int itemId);
 
+
+	void update(Item item);
+
 }
