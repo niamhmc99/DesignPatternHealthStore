@@ -1,5 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
@@ -11,8 +13,8 @@
 </head>
 <body>
 
-<%--    <jsp:include page="header.jsp" />
- --%>
+  <jsp:include page="navBar.jsp" />
+
 
   <div class="container">
     <c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -22,7 +24,7 @@
         <div class="site-name">Online Health Food Store</div>
         
 
-        <h2>Welcome <a href="${pageContext.request.contextPath}/accountInfo">${pageContext.request.userPrincipal.name} <a href="${pageContext.request.contextPath}/accountInfo"> </a> | 
+        <h2>Welcome <a href="${pageContext.request.contextPath}/accountInfo">${pageContext.request.userPrincipal.name} <a href="${pageContext.request.contextPath}/accountInfo"> </a>  ||      
         
         <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
     </c:if>
@@ -37,12 +39,7 @@
  <!--    <span class="navbar-toggler-icon"></span>
   </button> -->
 
-  <div sec:authorize="hasRole('ROLE_ADMIN')">
-   <h3>You will see this only if you are ADMIN</h3>
-   <p>
-    <a th:href="@{/admin/home}">Admin Home</a>
-   </p>
-  </div>
+ 
 
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
@@ -64,8 +61,8 @@
         <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
         <a class="nav-link" href="/addItem">Add Item</a>
         </li>
-        <li class="nav-item"  sec:authorize="isAuthenticated()">
-        <a class="nav-link" href="/items">Items</a>
+        <li class="nav-item">
+        <a class="nav-link" href="/getAllItems">View All Items</a>
       </li>
       <li class="nav-item"  sec:authorize="hasRole('ROLE_USER')">
         <a class="nav-link" href="/viewCart">View Cart</a>

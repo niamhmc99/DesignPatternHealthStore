@@ -68,6 +68,12 @@ public class UserController {
         return "welcome";
     }
     
+//    @GetMapping("/users")
+//    public String listUsers(Model model, @RequestParam(defaultValue="")  String username) { 
+//		model.addAttribute("users", userService.findByUsername(username));
+//		return "listOfUsers";
+//	}
+    
     @GetMapping("/users")
     public String listUsers(Model model, @RequestParam(defaultValue="")  String username) { 
 		model.addAttribute("users", userService.findByUsername(username));
@@ -89,6 +95,13 @@ public class UserController {
 //    List<TextTutorial> listOfTextTutorials = service.findAll();
 //    System.out.println(listOfTextTutorials.size()); // <-- This line.
 //    model.addAttribute("textTutorialList", listOfTextTutorials);
+    
+//    @RequestMapping(value = { "/accountInfo" }, method = RequestMethod.GET)
+//    public String accountInfo(Model model) {
+//        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        model.addAttribute("userDetails", userDetails);
+//        return "accountInfo";
+//    }
     
     @RequestMapping(value = { "/accountInfo" }, method = RequestMethod.GET)
     public String accountInfo(Model model) {
