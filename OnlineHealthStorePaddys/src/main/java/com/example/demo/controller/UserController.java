@@ -68,12 +68,27 @@ public class UserController {
         return "welcome";
     }
     
-    @GetMapping({"/users"})
-    public String listUsers(Model model,  @RequestParam(defaultValue="")  String name) {
-		model.addAttribute("users", userService.findAll());
+    @GetMapping("/users")
+    public String listUsers(Model model, @RequestParam(defaultValue="")  String username) { 
+		model.addAttribute("users", userService.findByUsername(username));
+	    System.out.println("Sizee" + userService.findAll().size()); 
+	    System.out.println("Find by username" + userService.findByUsername(username)); 
+// <-- This line.
 		System.out.println(model.addAttribute("users", userService.findAll()));
 		return "listOfUsers";
 	}
+    
+//    @RequestMapping(value="/users",  method = RequestMethod.GET)
+//    public String listUsers(Model model) { //@RequestParam(defaultValue="")  String name
+//		model.addAttribute("users", userService.findAll());
+//	    System.out.println("Sizee" + userService.findAll().size()); // <-- This line.
+//		System.out.println(model.addAttribute("users", userService.findAll()));
+//		return "listOfUsers";
+//	}
+    
+//    List<TextTutorial> listOfTextTutorials = service.findAll();
+//    System.out.println(listOfTextTutorials.size()); // <-- This line.
+//    model.addAttribute("textTutorialList", listOfTextTutorials);
     
     @RequestMapping(value = { "/accountInfo" }, method = RequestMethod.GET)
     public String accountInfo(Model model) {
