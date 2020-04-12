@@ -14,7 +14,7 @@ public interface UserService {
 	  
 	    public Iterable<User> findAll();
 
-	    public Optional<User> findOne(int id);
+	    public Item findOne(int id);
 
 	    public User deleteById(int id);
 

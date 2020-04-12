@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.dao.ItemRepo;
@@ -95,6 +96,29 @@ public class ItemController {
 		return "redirect:/getAllItems";
 	}
 	
+
+//	@RequestMapping(value = "/item/editItem", method = RequestMethod.POST)
+//	public String updateItem(Model model, @RequestParam("id") String id) {
+//		System.out.println("ADDED THE ITEM TO THE CART");
+//		int newId = Integer.parseInt(id);
+//		Item item = itemService.findItemById(newId);
+//		model.addAttribute("list", item);
+//		return "updateItem";
+//	}
+	
+	@RequestMapping(value = "/item/editItem/{itemId}")
+	public ModelAndView getEditForm(@PathVariable(value = "itemId") int itemId) {
+		Optional<Item> item = itemRepo.findById(itemId);
+		return new ModelAndView("editItem", "editItemObj", item);
+	}
+	
+
+	@RequestMapping(value = "/item/editItem", method = RequestMethod.POST)
+	public String editItem(@ModelAttribute(value = "editItemObj") Item item) {
+		itemService.editItem(item);
+		return "redirect:/getAllItems";
+	}
+	
 	@RequestMapping(value = "/items/{itemId}/delete")
 	public String deleteUser(@PathVariable("itemId") int itemId, 
 		final RedirectAttributes redirectAttributes) {
@@ -109,7 +133,7 @@ public class ItemController {
 	public String showUpdateItemForm(@PathVariable("itemId") int itemId, Model model) {
 		Optional<Item> item = itemRepo.findById(itemId);
 		model.addAttribute("itemForm", item);		
-		return "itemForm";
+		return "editItem";
 
 	}
 //	

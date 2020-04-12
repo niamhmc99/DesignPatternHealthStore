@@ -42,34 +42,78 @@ public class ShoppingCartController {
 	ShoppingCartServiceImpl shoppingCartService;
 	
 	ShoppingCart cart = new ShoppingCart();
+	
+	@RequestMapping(value = "/viewCart", method = RequestMethod.GET)
+	public String viewCart(Model model) {
+		System.out.println("\n Cart Size now " + cart.getCartItems().size());
+		model.addAttribute("cartPrice", cart.calculateTotal());
+		model.addAttribute("lists", cart.getCartItems());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findByUsername(auth.getName());
+		
+		ArrayList<CartItem> cart_items = new ArrayList<CartItem>();
+		cart_items.addAll(cart.getCartItems());
 
-	@RequestMapping("/cart/add/{productId}")
-	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-	public void addCartItem(@PathVariable(value = "itemId") int itemId) {
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String emailId = user.getUsername();
-		user = userService.findByUsername(emailId);
-		ShoppingCart cart = user.getShoppingCart();
-		List<CartItem> cartItems = (List<CartItem>) cart.getCartItems();
-		Item item = itemService.findItemById(itemId);
-		for (int i = 0; i < cartItems.size(); i++) {
-			CartItem cartItem = cartItems.get(i);
-			String itemReceived = String.valueOf(itemId);
-//			if (itemReceived = cartItem.getItem().getItemId()) {
-//				cartItem.setQuantity(cartItem.getQuantity() + 1);
-//				cartItem.setPrice(cartItem.getQuantity() * cartItem.getItem().getPrice());
-//				cartItemService.addCartItem(cartItem);
-//				return;
-//			}
-		}
-		CartItem cartItem = new CartItem();
-		cartItem.setQuantity(1);
-		cartItem.setItem(item);
-		cartItem.setPrice(item.getPrice() * 1);
-		cartItem.setShoppingCart(cart);
-		cartItemService.addCartItem(cartItem);
+		double total = 0;
+		for (int i = 0; i < cart_items.size(); i++) {
+			CartItem cartItem = cart_items.get(i);
+			Item item = itemService.findItemById(cartItem.getItem().getItemId());
+			total = total + (item.getPrice() * cartItem.getQuantity());
+		}		
+		model.addAttribute("user",user);
+		model.addAttribute("cart", cart);
+		model.addAttribute("cartItems", cart_items);
+		model.addAttribute("total", total);
+		return "usersCart";
 	}
 	
+	@RequestMapping(value = "/removeItem", method = RequestMethod.POST)
+	public String reomveItem(Model model, @RequestParam("itemId") String id) {
+		System.out.println("ADDED THE ITEM TO THE CART");
+		int newId = Integer.parseInt(id);
+		Item item = itemService.findItemById(newId);
+		for (int i = 0; i < cart.getCartItems().size(); i++) {
+//			if (cart.getCartItems().get(i).getId() == item.getItemId()) {
+//				cart.removeItemToCart(cart.getCartItems().getItemId(i));
+//				break;
+//			}
+		}
+		model.addAttribute("cartPrice", cart.calculateTotal());
+		model.addAttribute("lists", cart.getCartItems());
+		return "usersCart";
+	}
+
+
+//	@RequestMapping("/cart/add/{itemId}")
+//	@ResponseStatus(value = HttpStatus.NO_CONTENT)
+//	public void addCartItem(@PathVariable(value = "itemId") int itemId) {
+//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//		User user = userService.findOne(auth.getName());
+//
+//		
+//		String emailId = user.getUsername();
+//		user = userService.findByUsername(emailId);
+//		ShoppingCart cart = user.getShoppingCart();
+//		List<CartItem> cartItems = (List<CartItem>) cart.getCartItems();
+//		Item item = itemService.findItemById(itemId);
+//		for (int i = 0; i < cartItems.size(); i++) {
+//			CartItem cartItem = cartItems.get(i);
+//			String itemReceived = String.valueOf(itemId);
+////			if (itemReceived = cartItem.getItem().getItemId()) {
+////				cartItem.setQuantity(cartItem.getQuantity() + 1);
+////				cartItem.setPrice(cartItem.getQuantity() * cartItem.getItem().getPrice());
+////				cartItemService.addCartItem(cartItem);
+////				return;
+////			}
+//		}
+//		CartItem cartItem = new CartItem();
+//		cartItem.setQuantity(1);
+//		cartItem.setItem(item);
+//		cartItem.setPrice(item.getPrice() * 1);
+//		cartItem.setShoppingCart(cart);
+//		cartItemService.addCartItem(cartItem);
+//	}
+//	
 //	@GetMapping("/addtocart")
 //	public String addToCart(@RequestParam("itemId") int itemId, @RequestParam(defaultValue = "") String title, Model model) {
 //		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

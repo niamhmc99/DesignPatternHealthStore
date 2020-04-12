@@ -15,7 +15,7 @@ public class CartItem {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String cartItemId;
+	private int cartItemId;
 	
 	private int quantity;
 	private double price;
@@ -31,7 +31,7 @@ public class CartItem {
 
 	
 
-	public CartItem(String cartItemId, int quantity, double price, Item item, ShoppingCart shoppingCart) {
+	public CartItem(int cartItemId, int quantity, double price, Item item, ShoppingCart shoppingCart) {
 		super();
 		this.cartItemId = cartItemId;
 		this.quantity = quantity;
@@ -46,11 +46,11 @@ public class CartItem {
 		this.quantity = quantity;
 		}
 
-	public String getCartItemId() {
+	public int getCartItemId() {
 		return cartItemId;
 	}
 
-	public void setCartItemId(String cartItemId) {
+	public void setCartItemId(int cartItemId) {
 		this.cartItemId = cartItemId;
 	}
 

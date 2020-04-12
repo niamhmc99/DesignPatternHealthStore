@@ -68,9 +68,8 @@ public class UserServiceImpl implements UserService{
     }
 
 	@Override
-	public Optional<User> findOne(int id) {
-		return userRepo.findById(id);
-	}
+	public Item findOne(int id) {
+		return itemRepo.findById(id).orElse(null);	}
 
 	@Override
 	public User deleteById(int id) {

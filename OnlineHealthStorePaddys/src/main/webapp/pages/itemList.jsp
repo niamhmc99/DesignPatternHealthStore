@@ -81,8 +81,12 @@
 						
 						
 						<td> 
+						<spring:url value="/viewCart" var="viewCartUrl" /> 
+	
+						<button class="btn btn-primary" 
+                                          onclick="location.href='${viewCartUrl}'">View Cart</button>
 						<security:authorize access="hasAnyRole('ROLE_USER')"> 
-							<spring:url value="/items/${item.itemId}/addToCart" var="addToCartUrl" /> 
+							<spring:url value="/cart/add/${item.itemId}" var="addToCartUrl" /> 
 	
 						<button class="btn btn-primary" 
                                           onclick="location.href='${addToCartUrl}'">Add To Cart</button>

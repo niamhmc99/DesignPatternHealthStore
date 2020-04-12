@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,12 @@ public class ItemServiceImpl implements ItemService{
 	public Item findItemById(int itemId) {
 		// TODO Auto-generated method stub
 		return itemRepo.findByItemId(itemId);
+	}
+
+	@Override
+	public void editItem(Item item) {
+		// TODO Auto-generated method stub
+		itemRepo.save(item);
 	}
 
 }
