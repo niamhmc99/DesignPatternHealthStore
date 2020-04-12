@@ -37,6 +37,13 @@
 		style="width: 1145px; margin-bottom: 180px;">
 		<h2>Item Management</h2>
 		<p>The List of Items in the Health Food Store</p>
+		
+		<security:authorize access="hasAnyRole('ROLE_ADMIN')"> 
+			<spring:url value="/item/addItem" var="addItemUrl" /> 
+	
+			<button class="btn btn-primary" 
+                   onclick="location.href='${addItemUrl}'">Add Item</button>
+		</security:authorize>
 			
 		<table class="table table-hover" border="1" cellpadding="10" id="itemList">
 			<thead>
@@ -54,7 +61,7 @@
 					</security:authorize> 
 					<security:authorize
 							 access="hasAnyRole('ROLE_ADMIN')">
-					 /Edit /Delete
+					 /Edit /Delete 
 					</security:authorize>
 					</th>
 				</tr>
@@ -75,7 +82,7 @@
 						
 						<td> 
 						<security:authorize access="hasAnyRole('ROLE_USER')"> 
-							<spring:url value="/items/${item.itemId}/saveOrUpdateItem" var="addToCartUrl" /> 
+							<spring:url value="/items/${item.itemId}/addToCart" var="addToCartUrl" /> 
 	
 						<button class="btn btn-primary" 
                                           onclick="location.href='${addToCartUrl}'">Add To Cart</button>
@@ -87,9 +94,10 @@
 						<button class="btn btn-primary" 
                                           onclick="location.href='${updateUrl}'">Update</button>
 				  		<button class="btn btn-danger" 
-                                          onclick="this.disabled=true;post('${deleteUrl}')">Delete</button>
-                            </security:authorize>
-                            </td>   
+                                        onclick="location.href='${deleteUrl}'">Delete</button>
+                       </security:authorize>
+                        </td>   
+                                       
                                        
                                           
                                           
