@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.example.demo.decorator.CartItemInterface;
 import com.example.demo.model.CartItem;
 import com.example.demo.model.Item;
 import com.example.demo.model.ShoppingCart;

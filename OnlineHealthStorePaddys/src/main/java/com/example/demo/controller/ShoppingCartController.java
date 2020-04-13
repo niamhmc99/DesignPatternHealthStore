@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.example.demo.decorator.CartItemInterface;
 import com.example.demo.model.CartItem;
 import com.example.demo.model.Item;
 import com.example.demo.model.ShoppingCart;
@@ -51,12 +52,12 @@ public class ShoppingCartController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findByUsername(auth.getName());
 		
-		ArrayList<CartItem> cart_items = new ArrayList<CartItem>();
+		ArrayList<CartItemInterface> cart_items = new ArrayList<CartItemInterface>();
 		cart_items.addAll(cart.getCartItems());
 
 		double total = 0;
 		for (int i = 0; i < cart_items.size(); i++) {
-			CartItem cartItem = cart_items.get(i);
+			CartItemInterface cartItem = cart_items.get(i);
 			Item item = itemService.findItemById(cartItem.getItem().getItemId());
 			total = total + (item.getPrice() * cartItem.getQuantity());
 		}		

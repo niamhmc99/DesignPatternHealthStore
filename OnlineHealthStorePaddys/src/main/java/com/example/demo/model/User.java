@@ -27,7 +27,7 @@ public class User {
 //	 @LazyCollection(LazyCollectionOption.FALSE)
 //	    @ManyToMany(cascade = CascadeType.ALL)
 //	    private List<Item> items_purchased = new ArrayList<Item>();
-	
+
 
 	public User () {
 		
