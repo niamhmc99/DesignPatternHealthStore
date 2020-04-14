@@ -11,6 +11,6 @@ public interface ItemService {
     
 	Item findItemById(int itemId);
 
-	void editItem(Item item);
+	Item editItem(Item item);
 
 }

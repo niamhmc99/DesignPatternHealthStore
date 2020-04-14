@@ -15,7 +15,7 @@
 
 <script src="<c:url value="/resource/bootstrap/js/bootstrap.min.js"/>"></script>
 <link rel="stylesheet" type="text/css"
-	href="<c:url value="/resource/css/register.css"/>">
+	href="<c:url value="/resource/bootstrap/css/register.css"/>">
 </head>
 <body>
 
@@ -27,13 +27,17 @@
 		<div class="col-lg-12 well">
 			<div class="row">
 
-				<!--  RegisterServlet  form -->
 				<c:url value="/item/editItem" var="url"></c:url>
 				<form:form method="POST" action="${url}" modelAttribute="editItemObj" enctype="multipart/form-data">
 					<div class="col-sm-12">
 						<div class="row">
-
-							<div class="row">
+						<div class="col-sm-6 form-group">
+								<form:label path="title">Item's ID Number</form:label>
+								 <form:input type="number"
+									placeholder="Item's ID Number.." class="form-control"
+									path="itemId"></form:input>
+								 <form:errors path="itemId"></form:errors>
+							</div>
 							<div class="col-sm-6 form-group">
 								<form:label path="title">Items Title</form:label>
 								 <form:input type="text"

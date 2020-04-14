@@ -8,6 +8,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,9 +57,23 @@ public class ItemServiceImpl implements ItemService{
 	}
 
 	@Override
-	public void editItem(Item item) {
+	public Item editItem(Item item) {
 		// TODO Auto-generated method stub
 		itemRepo.save(item);
+		Optional<Item> item1 = itemRepo.findById(item.getItemId());
+	        if (item1.isPresent()) {
+	            Item i = item1.get();
+	            i.setTitle(item.getTitle());
+	            i.setManufacturer(item.getManufacturer());
+	            i.setPrice(item.getPrice());
+	            i.setCategory(item.getCategory());
+	            i.setImage(item.getImage());
+	            i.setAvailable(item.getAvailable());
+
+	            return itemRepo.save(i);
+	        } else {
+	            return null;
+	        }
 	}
 
 }

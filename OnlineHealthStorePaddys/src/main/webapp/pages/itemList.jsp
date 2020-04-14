@@ -93,7 +93,7 @@
 						</security:authorize>
 						<security:authorize access="hasAnyRole('ROLE_ADMIN')"> 
 							<spring:url value="/items/${item.itemId}/delete" var="deleteUrl" /> 
-				  			<spring:url value="/items/${item.itemId}/update" var="updateUrl" />
+				  			<spring:url value="/item/editItem/${item.itemId}" var="updateUrl" />
 	
 						<button class="btn btn-primary" 
                                           onclick="location.href='${updateUrl}'">Update</button>
@@ -101,30 +101,8 @@
                                         onclick="location.href='${deleteUrl}'">Delete</button>
                        </security:authorize>
                         </td>   
-                                       
-                                       
-                                          
-                                          
-				<%-- 		<a href="findItemById/${item.itemId}" class="btn btn-info"
-							role="button"> <span class="glyphicon glyphicon-info-sign"></span></a>
-
-							<!--view only for user -->
-							 <security:authorize
-								 access="hasAnyRole('ROLE_USER')">
-								<a href="#" ng-click="addToCart(${item.itemId})"
-									class="btn btn-primary" style="margin-left: 5px"> <span
-									class="glyphicon glyphicon-shopping-cart"></span></a>
-							</security:authorize> 
-							<!-- view only to the admin --> 
-							<security:authorize
-								access="hasAnyRole('ROLE_ADMIN')">
-								<a href="admin/product/editProduct/${item.itemId}"
-									class="btn btn-success" style="margin-left: 5px"> <span
-									class="glyphicon glyphicon-edit"></span></a>
-								<a href="admin/delete/${item.itemId}" class="btn btn-danger"
-									style="margin-left: 5px"> <span
-									class="glyphicon glyphicon-trash"></span></a>
-							</security:authorize></td> --%>
+                      
+        
 					</tr>
 				</c:forEach>
 			</tbody>

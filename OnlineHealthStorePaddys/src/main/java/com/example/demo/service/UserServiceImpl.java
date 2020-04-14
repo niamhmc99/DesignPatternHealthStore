@@ -4,7 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnits;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +27,13 @@ import com.example.demo.model.User;
 @Service
 public class UserServiceImpl implements UserService{
 	
+//		@Autowired
+//		private SessionFactory sessionFactory;
+// 
+//		public void setSessionFactory(SessionFactory sf) {
+//			this.sessionFactory = sf;
+//		}
+ 
 	
 	   @Autowired
 	    private UserRepo userRepo;
@@ -56,20 +71,54 @@ public class UserServiceImpl implements UserService{
         user.setRoles((List<Role>) roleRepo.findAll());
         userRepo.save(user);
 	}
+	
+//	    EntityManagerFactory entityManagerFactory;
+//
+//	    @Bean
+//	    public SessionFactory getSessionFactory() {
+//	        if (entityManagerFactory.unwrap(SessionFactory.class) == null) {
+//	            throw new NullPointerException("factory is not a hibernate factory");
+//	        }
+//	        return entityManagerFactory.unwrap(SessionFactory.class);
+//	    }
 
 	@Override
 	public User findByUsername(String username) {
-		// TODO Auto-generated method stub
+//		Session session = getSessionFactory().getCurrentSession();
+//        Criteria crit = session.createCriteria(User.class);
+//        crit.add(Restrictions.eq("username", username));
+//		return (User) crit.uniqueResult();
+
 		return userRepo.findByUsername(username);
 	}
 	
 	public List<User> findAll() {
-        return userRepo.findAll();
+//		Session session = getSessionFactory().getCurrentSession();
+//        Criteria crit = session.createCriteria(User.class);
+//		return crit.list();
+		return userRepo.findAll();
     }
+	
+	   
+	    public List<User> search(String query) {
+	        List<User> users = (List<User>) userRepo.findAll();
+	        List<User> foundUsers = new ArrayList<>();
+
+	        for (User user : users) {
+	            if (user.getUsername().equalsIgnoreCase(query) ||
+	                    user.getEmail().toLowerCase().contains(query.toLowerCase()) ||
+	                    user.getAddress().toLowerCase().contains(query.toLowerCase()))
+	                foundUsers.add(user);
+	        }
+
+	        return foundUsers;
+	    }
+	
 
 	@Override
 	public Item findOne(int id) {
 		return itemRepo.findById(id).orElse(null);	}
+	
 
 	@Override
 	public User deleteById(int id) {
@@ -147,14 +196,6 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
         return userRepo.findByUsername(username);
 	}
-
-	
-
-//	@Override
-//	public List<User> checkEmail(String email) {
-//		// TODO Auto-generated method stub
-//        return userRepo.checkEmail(email);
-//	}
 
 
 }
