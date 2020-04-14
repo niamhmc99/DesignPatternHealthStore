@@ -196,6 +196,11 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
         return userRepo.findByUsername(username);
 	}
+	
+	public User findUserById(Integer userId) {
+		// TODO Auto-generated method stub
+		return userRepo.findById(userId).orElse(null);
+	}
 
 
 }
