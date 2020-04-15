@@ -36,20 +36,6 @@ public class ItemController {
 	ItemRepo itemRepo;
 	@Autowired
 	ItemServiceImpl itemService;
-//	
-//	@RequestMapping("/home")
-//	public String home()
-//	{
-//		System.out.println("hi");
-//		return "home";
-//	}
-//	
-//	@GetMapping(path="/items")
-//	public Iterable<Item> getItems()
-//	{
-//		return itemRepo.findAll();
-//			
-//	}
 	
 	@PutMapping("/item")
 	public Item saveOrUpdateItem(@RequestBody Item item)
@@ -58,11 +44,15 @@ public class ItemController {
 	}
 
 
+	@RequestMapping("getItemById/{itemId}")
+	public ModelAndView getProductById(@PathVariable(value = "itemId") int itemId) {
+		Item item = itemService.findItemById(itemId);
+		return new ModelAndView("itemPage", "itemObj", item);
+	}
+
 	@RequestMapping(value = "/item/addItem", method = RequestMethod.GET)
 	public String getItemForm(Model model) {
 		Item item = new Item();
-		// New Arrivals
-		// set the category as 1 for the Book book
 		//item.setItemCategory("Vitamins");
 		model.addAttribute("itemFormObj", item);
 		return "addItem";
@@ -71,39 +61,11 @@ public class ItemController {
 
 	@RequestMapping(value = "/item/addItem", method = RequestMethod.POST)
 	public String addItem(@Valid @ModelAttribute(value = "itemFormObj") Item item, BindingResult result) {
-		// Binding Result is used if the form that has any error then it will
-		// redirect to the same page without performing any functions
 		if (result.hasErrors())
 			return "addItem";
 		itemService.save(item);
-//		MultipartFile image = item.getImage();
-//		if (image != null && !image.isEmpty()) {
-//			Path path = Paths
-//					.get("/OnlineHealthStorePaddys/src/main/webapp/WEB-INF/resource/images/items/"
-//							+ item.getItemId() + ".jpg");
-//
-//			try {
-//				image.transferTo(new File(path.toString()));
-//			} catch (IllegalStateException e) {
-//				e.printStackTrace();
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//
-//		}
 		return "redirect:/getAllItems";
 	}
-	
-
-//	@RequestMapping(value = "/item/editItem", method = RequestMethod.POST)
-//	public String updateItem(Model model, @RequestParam("id") String id) {
-//		System.out.println("ADDED THE ITEM TO THE CART");
-//		int newId = Integer.parseInt(id);
-//		Item item = itemService.findItemById(newId);
-//		model.addAttribute("list", item);
-//		return "updateItem";
-//	}
 	
 	@RequestMapping(value = "/item/editItem/{itemId}")
 	public ModelAndView getEditForm(@PathVariable(value = "itemId") int itemId) {
@@ -135,14 +97,7 @@ public class ItemController {
 		return "editItem";
 
 	}
-//	
-//	@RequestMapping("/item/{id}")
-//	public Optional<Item> getAlien(@PathVariable("id")int itemId)
-//	{
-//		return itemRepo.findById(itemId);
-//		
-//	}
-	
+
 	@GetMapping("/getAllItems")
 	public String listItems(Model model, @RequestParam(defaultValue="")  String title) {
 		model.addAttribute("items", itemService.findByTitle(title));

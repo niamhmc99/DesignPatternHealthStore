@@ -6,7 +6,7 @@ import com.example.demo.model.ShoppingCart;
 
 public interface ShoppingCartService {
 
-	Optional<ShoppingCart> getCartByCartId(int cartId);
+	ShoppingCart findByUserId(int userId);
 	void saveShoppingCart(ShoppingCart shoppingCart);
 
 }

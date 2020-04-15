@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.ElementCollection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -26,10 +26,10 @@ public class ShoppingCart implements ShoppingCartInterface{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int shoppingCartId;
 	
-	@OneToMany(mappedBy = "shoppingCart")
-	private Set<CartItem> cartItems;
+	@OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.MERGE)
+	private List<CartItem> cartItems;
 	
-	@OneToOne(fetch = FetchType.LAZY, optional = false)
+	@OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 	
@@ -51,7 +51,7 @@ public class ShoppingCart implements ShoppingCartInterface{
 		return total;
 	}
 	
-	public ShoppingCart(int shoppingCartId, Set<CartItem> cartItems, User user) {
+	public ShoppingCart(int shoppingCartId, List<CartItem> cartItems, User user) {
 		super();
 		this.shoppingCartId = shoppingCartId;
 		this.cartItems = cartItems;
@@ -66,12 +66,12 @@ public class ShoppingCart implements ShoppingCartInterface{
 		this.shoppingCartId = shoppingCartId;
 	}
 
-	public Set<CartItem> getCartItems() {
+	public List<CartItem> getCartItems() {
 		return cartItems;
 	}
 
-	public void setCartItems(Set<CartItem> cartItems) {
-		this.cartItems = cartItems;
+	public void setCartItems(List<CartItem> updatedList) {
+		this.cartItems = updatedList;
 	}
 
 	public User getUser() {

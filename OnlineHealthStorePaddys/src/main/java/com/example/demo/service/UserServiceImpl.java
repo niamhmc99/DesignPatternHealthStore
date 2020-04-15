@@ -84,11 +84,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User findByUsername(String username) {
-//		Session session = getSessionFactory().getCurrentSession();
-//        Criteria crit = session.createCriteria(User.class);
-//        crit.add(Restrictions.eq("username", username));
-//		return (User) crit.uniqueResult();
-
+//	
 		return userRepo.findByUsername(username);
 	}
 	

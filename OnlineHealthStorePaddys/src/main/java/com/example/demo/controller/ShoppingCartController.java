@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.example.demo.decorator.CartItemInterface;
 import com.example.demo.model.CartItem;
+import com.example.demo.model.CustomUserDetail;
 import com.example.demo.model.Item;
 import com.example.demo.model.ShoppingCart;
 import com.example.demo.model.User;
@@ -44,13 +45,17 @@ public class ShoppingCartController {
 	
 	ShoppingCart cart = new ShoppingCart();
 	
-	@RequestMapping(value = "/viewCart", method = RequestMethod.GET)
+	@RequestMapping(value = "/viewShoppingCart", method = RequestMethod.GET)
 	public String viewCart(Model model) {
-		System.out.println("\n Cart Size now " + cart.getCartItems().size());
-		model.addAttribute("cartPrice", cart.calculateTotal());
-		model.addAttribute("lists", cart.getCartItems());
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userService.findByUsername(auth.getName());
+		CustomUserDetail myUserDetails = (CustomUserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	    Integer userId=myUserDetails.getUser().getUserId(); //Fetch the custom property in User class
+		User user = userService.findUserById(userId);
+	//	System.out.println("\n Cart Size now " + cart.getCartItems().size());
+//		model.addAttribute("cartPrice", cart.calculateTotal());
+//		model.addAttribute("lists", cart.getCartItems());
+//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//		User user = userService.findByUsername(auth.getName());
+		ShoppingCart cart = shoppingCartService.findByUserId(user.getUserId());
 		
 		ArrayList<CartItemInterface> cart_items = new ArrayList<CartItemInterface>();
 		cart_items.addAll(cart.getCartItems());
@@ -65,13 +70,13 @@ public class ShoppingCartController {
 		model.addAttribute("cart", cart);
 		model.addAttribute("cartItems", cart_items);
 		model.addAttribute("total", total);
-		return "usersCart";
+		return "viewShoppingCart";
 	}
 	
 	@RequestMapping(value = "/removeItem", method = RequestMethod.POST)
-	public String reomveItem(Model model, @RequestParam("itemId") String id) {
+	public String reomveItem(Model model, @RequestParam("itemId") String itemId) {
 		System.out.println("ADDED THE ITEM TO THE CART");
-		int newId = Integer.parseInt(id);
+		int newId = Integer.parseInt(itemId);
 		Item item = itemService.findItemById(newId);
 		for (int i = 0; i < cart.getCartItems().size(); i++) {
 //			if (cart.getCartItems().get(i).getId() == item.getItemId()) {

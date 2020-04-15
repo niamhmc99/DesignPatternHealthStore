@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.interfaces.SecurityService;
+import com.example.demo.model.ShoppingCart;
 import com.example.demo.model.User;
+import com.example.demo.service.ShoppingCartServiceImpl;
 import com.example.demo.service.UserServiceImpl;
 import com.example.demo.validator.UserValidator;
 
@@ -29,6 +31,8 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
+    @Autowired
+    private ShoppingCartServiceImpl shoppingCartService;
 
     @GetMapping("/registration")
     public String registration(Model model) {
@@ -45,6 +49,9 @@ public class UserController {
             return "registration";
         }
         userService.save(userForm);
+        ShoppingCart shoppingCart = new ShoppingCart();
+		shoppingCart.setUser(userForm);
+		shoppingCartService.saveShoppingCart(shoppingCart);
         securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
 
         return "redirect:/welcome";

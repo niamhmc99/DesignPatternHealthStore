@@ -19,7 +19,7 @@ public class Role {
 	private String role;
 	
 	//To create relationship with user 
-	@ManyToMany(cascade = CascadeType.ALL, mappedBy="roles")
+	@ManyToMany(cascade = CascadeType.MERGE, mappedBy="roles")
 	private Set<User> users;
 	
 	public Role() {

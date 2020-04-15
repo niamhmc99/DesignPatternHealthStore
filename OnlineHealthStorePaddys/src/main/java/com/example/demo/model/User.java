@@ -18,10 +18,10 @@ public class User {
 	private String passwordConfirm;
 	
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.MERGE)
 	private List<Role> roles;
 	 
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private ShoppingCart shoppingCart; 
 	
 //	 @LazyCollection(LazyCollectionOption.FALSE)

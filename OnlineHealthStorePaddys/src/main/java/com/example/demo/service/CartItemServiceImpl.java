@@ -40,4 +40,7 @@ public class CartItemServiceImpl implements CartItemService{
 		cartItemRepo.deleteAll(cartItems);		
 	}
 
+	public void saveCartItem(CartItem cartItem) {
+		cartItemRepo.save(cartItem);
+	}
 }

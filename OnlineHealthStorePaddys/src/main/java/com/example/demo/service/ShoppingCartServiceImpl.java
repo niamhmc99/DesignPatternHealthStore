@@ -16,11 +16,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
 	private ShoppingCartRepo cartRepo;
 	
 	@Override
-	public Optional<ShoppingCart> getCartByCartId(int cartId) {
-		return cartRepo.findById(cartId);
-	}
-	
-	@Override
 	public void saveShoppingCart(ShoppingCart shoppingCart) {
 		cartRepo.save(shoppingCart);
 	}
@@ -29,6 +24,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
 	public ShoppingCart findByUserEmail(String email) {
 		// TODO Auto-generated method stub
 		return cartRepo.findByUserEmail(email);
+	}
+
+	public ShoppingCart findByUserId(int userId) {
+		// TODO Auto-generated method stub
+		return cartRepo.findById(userId).orElse(null);
 	}
 
 }

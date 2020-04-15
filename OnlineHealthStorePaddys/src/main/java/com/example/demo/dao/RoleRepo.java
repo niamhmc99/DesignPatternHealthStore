@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.Role;
 
-public interface RoleRepo extends CrudRepository<Role, String>{
+public interface RoleRepo extends CrudRepository<Role, Integer>{
 
 }

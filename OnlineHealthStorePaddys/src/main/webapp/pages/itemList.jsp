@@ -3,15 +3,17 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
-<%@ page session="false"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <!DOCTYPE html>
- <html xmlns:th="http://www.thymeleaf.org"
+<!--  <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{fragments/main_layout}"> 
+	layout:decorate="~{fragments/main_layout}">  -->
+<html lang="en" 
+	xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:th="http://www.thymeleaf.org">
 	
 	
 <%@ include file="navBar.jsp"%>
@@ -21,6 +23,7 @@
 <%-- <link rel="icon" type="image/x-icon"
 	href="<c:url value="/resources/images/healthy_living.jpg"/>" /> --%>
 	
+	 <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
 	<c:url value="/webapp/WEB-INF/resource/images/healthy_living.jpg" var="logo"/>
 	
 <link rel="stylesheet" type="text/css"
@@ -43,6 +46,13 @@
 	
 			<button class="btn btn-primary" 
                    onclick="location.href='${addItemUrl}'">Add Item</button>
+		</security:authorize>
+			
+		<security:authorize access="hasAnyRole('ROLE_USER')"> 
+			<spring:url value="/viewShoppingCart" var="viewShoppingCart" /> 
+	
+			<button class="btn btn-primary" 
+                   onclick="location.href='${viewShoppingCart}'"><h2>View Shopping Cart</h2></button>
 		</security:authorize>
 			
 		<table class="table table-hover" border="1" cellpadding="10" id="itemList">
@@ -81,10 +91,10 @@
 						
 						
 						<td> 
-						<spring:url value="/viewCart" var="viewCartUrl" /> 
+						<spring:url value="/getItemById/${item.itemId}" var="viewItemUrl" /> 
 	
 						<button class="btn btn-primary" 
-                                          onclick="location.href='${viewCartUrl}'">View Cart</button>
+                                          onclick="location.href='${viewItemUrl}'">View Item</button>
 						<security:authorize access="hasAnyRole('ROLE_USER')"> 
 							<spring:url value="/shoppingCart/add/${item.itemId}" var="addToCartUrl" /> 
 	

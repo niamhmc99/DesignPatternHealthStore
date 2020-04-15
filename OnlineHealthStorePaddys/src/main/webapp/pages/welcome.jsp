@@ -24,7 +24,8 @@
         <div class="site-name">Online Health Food Store</div>
         
 
-        <h2>Welcome <a href="${pageContext.request.contextPath}/accountInfo">${pageContext.request.userPrincipal.name} <a href="${pageContext.request.contextPath}/accountInfo"> </a>  ||      
+        <h2>Welcome <a href="${pageContext.request.contextPath}/accountInfo">${pageContext.request.userPrincipal.name} 
+        <a href="${pageContext.request.contextPath}/accountInfo"> </a>  ||      
         
         <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
     </c:if>
