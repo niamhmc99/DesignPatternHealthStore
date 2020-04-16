@@ -6,13 +6,13 @@
 <%@ page isELIgnored="false"%>
 
 <%@ include file="navBar.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Items</title>
-<link rel="icon" type="image/x-icon"
-	href="<c:url value="/resource/images/favicon1.png"/>" />
+<link rel="icon" type="image/x-icon" href="<c:url value="/resource/images/favicon1.png"/>" />
 
 </head>
 <body>
@@ -77,10 +77,6 @@
 								
 								</div>
 				
-								<%-- <a href="<c:url value="/getAllItems" />" class="btn btn-info"
-									style="margin-top: 0px; width: 150px; float: right; margin-right: 31px;">
-									<span class="glyphicon glyphicon-arrow-left"></span>
-								</a> --%>
 							</div></td>
 					</tr>
 				</tbody>

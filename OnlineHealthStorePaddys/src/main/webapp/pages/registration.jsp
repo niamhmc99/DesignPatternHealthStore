@@ -7,11 +7,13 @@
 <html>
   <head>
       <meta charset="utf-8">
-      <title>Welcome to the Health Food Store!
-      			Please Create an account</title>
-
-      <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-      <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+      <title>Register Account for the Health Food Store!</title>
+      			
+      			
+       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+ <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
   </head>
 
   <body>

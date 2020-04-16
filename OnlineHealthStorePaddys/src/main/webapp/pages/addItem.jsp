@@ -10,12 +10,8 @@
 <meta charset="UTF-8">
 <title> Add Item </title>
 
-<link rel="stylesheet"
-	href="<c:url value="/resource/bootstrap/css/bootstrap.min.css"/>">
-	<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/css/register.css"/>">
-	<script src="<c:url value="/resource/bootstrap/js/bootstrap.min.js"/>"></script>
-	<link rel="icon" type="image/x-icon" href="<c:url value="/resource/images/favicon1.png"/>" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="icon" type="image/x-icon" href="<c:url value="/resource/images/favicon1.png"/>" />
 	
 </head>
 <body>

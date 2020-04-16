@@ -53,7 +53,6 @@ public class ItemController {
 	@RequestMapping(value = "/item/addItem", method = RequestMethod.GET)
 	public String getItemForm(Model model) {
 		Item item = new Item();
-		//item.setItemCategory("Vitamins");
 		model.addAttribute("itemFormObj", item);
 		return "addItem";
 
@@ -101,7 +100,6 @@ public class ItemController {
 	@GetMapping("/getAllItems")
 	public String listItems(Model model, @RequestParam(defaultValue="")  String title) {
 		model.addAttribute("items", itemService.findByTitle(title));
-	    System.out.println("Find by title" + itemService.findByTitle(title)); 
 		System.out.println(model.addAttribute("items", itemService.findAll()));
 		return "itemList";
 	}

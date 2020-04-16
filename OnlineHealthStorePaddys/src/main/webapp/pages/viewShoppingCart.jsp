@@ -4,16 +4,18 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{fragments/main_layout}">
+<html>
+	
+<%@ include file="navBar.jsp"%>
+	
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <meta charset="UTF-8">
 <title>View Shopping Cart</title>
 </head>
 <body>
 <div layout:fragment="content" class="container mySpace">
-		<form action="/items" class="form-inline">
+		<form action="getItemById/${item.itemId}" class="form-inline">
 			<div class="form-group mb-2">
 				<input type="text" class="form-control" name="title"
 					placeholder="Search Item Title" /> <input type="submit" value="Search"

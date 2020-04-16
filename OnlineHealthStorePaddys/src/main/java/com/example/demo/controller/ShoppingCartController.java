@@ -47,7 +47,7 @@ public class ShoppingCartController {
 		ShoppingCart cart = user.getShoppingCart();
 		
 		List<CartItem> cartItems = cart.getCartItems();		
-		cartItems.addAll(cart.getCartItems());
+		//cartItems.addAll(cart.getCartItems());
 		
 		double total = 0;
 		for (int i = 0; i < cartItems.size(); i++) {
@@ -61,28 +61,10 @@ public class ShoppingCartController {
 		return "viewShoppingCart";
 	}
 	
-//	@RequestMapping(value = "/removeItem", method = RequestMethod.POST)
-//	public String removeItem(Model model, @RequestParam("itemId") String itemId) {
-//		System.out.println("ADDED THE ITEM TO THE CART");
-//		int newId = Integer.parseInt(itemId);
-//		Item item = itemService.findItemById(newId);
-//		for (int i = 0; i < cart.getCartItems().size(); i++) {
-////		if (cart.getCartItems().get(i).getId() == item.getItemId()) {
-////				cart.removeItemToCart(cart.getCartItems().getItemId(i));
-////				break;
-////			}
-//		}
-//		model.addAttribute("cartPrice", cart.calculateTotal());
-//		model.addAttribute("lists", cart.getCartItems());
-//		return "usersCart";
-//	}
-	
 	@RequestMapping("/shoppingCart/removeCartItem/{cartItemId}")
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public String removeCartItem(@PathVariable(value = "cartItemId") int cartItemId) {
-		System.out.println("Remove cart item" + cartItemId);
-		System.out.println("From cart" + cart);
-		cart.removeCartItem(cartItemId);
+		cartItemService.removeCartItem(cartItemId);
 		return "viewShoppingCart";
 	}
 
@@ -91,6 +73,8 @@ public class ShoppingCartController {
 	public String removeAllCartItems(@PathVariable(value = "shoppingCartId") int shoppingCartId) {
 		ShoppingCart cart = shoppingCartService.findById(shoppingCartId);
 		List<CartItem> cartItems =cart.getCartItems();
+		System.out.println("Cart id" + cart);
+		System.out.println("Cart itemms in cart" + cart.getCartItems());
 		cartItemService.removeAllCartItems(cartItems);
 		return "viewShoppingCart";
 	}

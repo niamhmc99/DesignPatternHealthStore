@@ -18,15 +18,15 @@ public class User {
 	private String passwordConfirm;
 	
 
-	@ManyToMany(cascade = CascadeType.MERGE)
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Role> roles;
 	 
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private ShoppingCart shoppingCart; 
 	
-//	 @LazyCollection(LazyCollectionOption.FALSE)
-//	    @ManyToMany(cascade = CascadeType.ALL)
-//	    private List<Item> items_purchased = new ArrayList<Item>();
+	 @LazyCollection(LazyCollectionOption.FALSE)
+	    @ManyToMany(cascade = CascadeType.ALL)
+	    private List<Item> items_purchased = new ArrayList<Item>();
 	
 
 	public User () {

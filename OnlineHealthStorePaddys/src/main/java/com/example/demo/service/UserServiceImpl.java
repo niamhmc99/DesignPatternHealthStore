@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService{
 		public void createUser(User user) {
 			BCryptPasswordEncoder  encoder = new  BCryptPasswordEncoder();
 			user.setPassword(encoder.encode(user.getPassword())); 
-			Role userRole = new Role("USER");
+			Role userRole = new Role("ROLE_USER");
 			List<Role> roles = new ArrayList<>();
 			roles.add(userRole);
 			user.setRoles(roles);
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService{
 		public void createAdmin(User user) {
 			BCryptPasswordEncoder  encoder = new  BCryptPasswordEncoder();
 			user.setPassword(encoder.encode(user.getPassword())); 
-			Role userRole = new Role("ADMIN");
+			Role userRole = new Role("ROLE_ADMIN");
 			List<Role> roles = new ArrayList<>();
 			roles.add(userRole);
 			user.setRoles(roles);
@@ -58,9 +58,11 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public void save(User user) {
-		// TODO Auto-generated method stub
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setRoles((List<Role>) roleRepo.findAll());
+		Role userRole = new Role("ROLE_USER");
+		List<Role> roles = new ArrayList<>();
+		roles.add(userRole);
+		user.setRoles(roles);
         userRepo.save(user);
 	}
 	

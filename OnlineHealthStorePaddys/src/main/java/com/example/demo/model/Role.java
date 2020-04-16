@@ -17,9 +17,8 @@ public class Role {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	private String role;
-	
-	//To create relationship with user 
-	@ManyToMany(cascade = CascadeType.MERGE, mappedBy="roles")
+
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy="roles")
 	private Set<User> users;
 	
 	public Role() {
@@ -50,10 +49,5 @@ public class Role {
 	public void setUsers(Set<User> users) {
 		this.users = users;
 	}
-
-
-
-
-	
 
 }

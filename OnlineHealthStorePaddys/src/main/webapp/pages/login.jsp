@@ -6,18 +6,10 @@
 
 <html lang="en">
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
       <meta charset="utf-8">
       <title>Log in with your account</title>
-<!-- Bootstrap core CSS -->
-<!--      <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
-
- -->  
- 
-      <link href="${contextPath}/resources/static/css/bootstrap.min.css" rel="stylesheet">
-      <link href="${contextPath}/resources/static/css/common.css" rel="stylesheet"> 
-     
- <%-- 	  <link href="${contextPath}/resource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-      <link href="${contextPath}/resource/bootstrap/css/common.css" rel="stylesheet">  --%>
 </head>
 
 	<body>

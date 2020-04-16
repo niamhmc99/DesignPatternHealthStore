@@ -8,32 +8,21 @@
 
 
 <!DOCTYPE html>
-<!--  <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{fragments/main_layout}">  -->
-<html lang="en" 
-	xmlns="http://www.w3.org/1999/xhtml"
-	 xmlns:th="http://www.thymeleaf.org">
-	
-	
+
+<html>	
 <%@ include file="navBar.jsp"%>
 <head>
 <meta charset="UTF-8">
 <title>Item Management</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 <%-- <link rel="icon" type="image/x-icon"
 	href="<c:url value="/resources/images/healthy_living.jpg"/>" /> --%>
-	
-	 <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+
 	<c:url value="/webapp/WEB-INF/resource/images/healthy_living.jpg" var="logo"/>
-	
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="../resource/css/itemList.css"/>">
 </head>
 
 <body>
-
-<%-- <img src="${pageContext.request.contextPath}/resource/images/healthy_living.jpg">
- --%>
  <img src="/webapp/WEB-INF/resource/images/healthy_living.jpg">
  
 	<div class="container" id="itemTable" layout:fragment="content"
@@ -89,7 +78,6 @@
 						<td>${item.price}</td>
 						<td>${item.manufacturer}</td>
 						
-						
 						<td> 
 						<spring:url value="/getItemById/${item.itemId}" var="viewItemUrl" /> 
 	
@@ -111,21 +99,10 @@
                                         onclick="location.href='${deleteUrl}'">Delete</button>
                        </security:authorize>
                         </td>   
-                      
-        
-					</tr>
+  					</tr>
 				</c:forEach>
 			</tbody>
-			
-		
-		
-		
-		
 		</table>
-	
-	
-	
 	</div>
-
 </body>
 </html>

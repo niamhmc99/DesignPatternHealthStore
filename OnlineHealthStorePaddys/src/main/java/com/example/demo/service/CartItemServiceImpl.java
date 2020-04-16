@@ -20,16 +20,6 @@ public class CartItemServiceImpl implements CartItemService{
 		return cartItemRepo.save(cartItem);		
 	}
 
-//	public List<CartItem> findByShoppingCartId(int cartItemId) {
-//		// TODO Auto-generated method stub
-//		return cartItemRepo.findByCartId(cartItemId);
-//	}
-
-//	
-//	public CartItem findByItemId(int itemId) {
-//		return cartItemRepo.findByItemId(itemId);
-//	}
-
 	@Override
 	public void removeCartItem(int cartItemId) {
 		cartItemRepo.deleteById(cartItemId);	
