@@ -9,5 +9,5 @@ public interface ShoppingCartInterface {
 	 	public Double getTotalCost();
 	    public Collection<CartItemInterface> getShoppingListItems();
 	    public void addCartItem(CartItem cartItem);
-	    public void removeCartItem(CartItem cartItem);
+		public void removeCartItem(int cartItem);
 }

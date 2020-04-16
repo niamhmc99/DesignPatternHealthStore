@@ -26,15 +26,7 @@ import com.example.demo.model.User;
 
 @Service
 public class UserServiceImpl implements UserService{
-	
-//		@Autowired
-//		private SessionFactory sessionFactory;
-// 
-//		public void setSessionFactory(SessionFactory sf) {
-//			this.sessionFactory = sf;
-//		}
- 
-	
+		
 	   @Autowired
 	    private UserRepo userRepo;
 	    @Autowired
@@ -72,43 +64,26 @@ public class UserServiceImpl implements UserService{
         userRepo.save(user);
 	}
 	
-//	    EntityManagerFactory entityManagerFactory;
-//
-//	    @Bean
-//	    public SessionFactory getSessionFactory() {
-//	        if (entityManagerFactory.unwrap(SessionFactory.class) == null) {
-//	            throw new NullPointerException("factory is not a hibernate factory");
-//	        }
-//	        return entityManagerFactory.unwrap(SessionFactory.class);
-//	    }
-
 	@Override
 	public User findByUsername(String username) {
-//	
 		return userRepo.findByUsername(username);
 	}
 	
 	public List<User> findAll() {
-//		Session session = getSessionFactory().getCurrentSession();
-//        Criteria crit = session.createCriteria(User.class);
-//		return crit.list();
 		return userRepo.findAll();
     }
-	
-	   
-	    public List<User> search(String query) {
-	        List<User> users = (List<User>) userRepo.findAll();
-	        List<User> foundUsers = new ArrayList<>();
 
-	        for (User user : users) {
-	            if (user.getUsername().equalsIgnoreCase(query) ||
-	                    user.getEmail().toLowerCase().contains(query.toLowerCase()) ||
-	                    user.getAddress().toLowerCase().contains(query.toLowerCase()))
-	                foundUsers.add(user);
-	        }
-
-	        return foundUsers;
-	    }
+	public List<User> search(String query) {
+        List<User> users = (List<User>) userRepo.findAll();
+        List<User> foundUsers = new ArrayList<>();
+    for (User user : users) {
+        if (user.getUsername().equalsIgnoreCase(query) ||
+	        user.getEmail().toLowerCase().contains(query.toLowerCase()) ||
+	        user.getAddress().toLowerCase().contains(query.toLowerCase()))
+        	foundUsers.add(user);
+	   }
+	    return foundUsers;
+	}
 	
 
 	@Override

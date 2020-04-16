@@ -40,19 +40,7 @@ public class CartItemController {
 	@Autowired 
 	private ShoppingCartServiceImpl shoppingCartService;
 	
-//	@RequestMapping(value = "/addItemToCart/{itemId}", method = RequestMethod.POST)
-//	public String addToCart(Model model, @RequestParam("itemId") String itemId) {
-//		System.out.println("ADDED THE ITEM TO THE CART");
-//		int newId = Integer.parseInt(itemId);
-//		Item item = itemService.findItemById(newId);
-//
-//		cart.addItemToCart(item);
-//
-//		//System.out.println("\n Cart Size now " + cart.getItemsinCart().size());
-//		model.addAttribute("lists", itemService.findAll());
-//		return "success";
-//	}
-   
+
     
 	@RequestMapping("/shoppingCart/add/{itemId}")
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
@@ -67,28 +55,31 @@ public class CartItemController {
 		List<CartItem> cartItems = cart.getCartItems();
 		for (int i = 0; i < cartItems.size(); i++) {
 			
-			CartItem cartItem = cartItems.iterator().next();
-			
+			CartItem cartItem = cartItems.get(i);
+			System.out.println("Item id " + item.getItemId());
+			System.out.println("Cart item id " + cartItem.getItem().getItemId());
 			if (item.getItemId() == cartItem.getItem().getItemId()) {
 				cartItem.setQuantity(cartItem.getQuantity() + 1);
 				cartItem.setPrice(cartItem.getQuantity() * cartItem.getItem().getPrice());
 				cartItemService.addCartItem(cartItem);
+				System.out.println("Result if it goes through if statement");
+
 				return "itemList";
 			}
 		}
 		
 			CartItem cartItem = new CartItem();
+			System.out.println("Result if item doesnt exist before");
+
 			cartItem.setQuantity(1);
 			cartItem.setItem(item);
 			cartItem.setPrice(item.getPrice() * 1);
 			cartItem.setShoppingCart(cart);
 			cartItemService.addCartItem(cartItem);
 		
-		String successMessage = "";
+		String successMessage = "Item Added Successfully";
 		model.addAttribute("successMessage", successMessage);
 
-		
-		
 		return "itemList";
 	}
 	

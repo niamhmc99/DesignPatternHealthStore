@@ -43,4 +43,9 @@ public class CartItemServiceImpl implements CartItemService{
 	public void saveCartItem(CartItem cartItem) {
 		cartItemRepo.save(cartItem);
 	}
+
+	public CartItem findByCartItemId(int cartItemId) {
+		// TODO Auto-generated method stub
+		return cartItemRepo.findById(cartItemId).orElse(null);
+	}
 }

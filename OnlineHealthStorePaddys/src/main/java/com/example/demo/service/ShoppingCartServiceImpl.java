@@ -26,9 +26,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
 		return cartRepo.findByUserEmail(email);
 	}
 
-	public ShoppingCart findByUserId(int userId) {
+	public ShoppingCart findById(int id) {
 		// TODO Auto-generated method stub
-		return cartRepo.findById(userId).orElse(null);
+		return cartRepo.findById(id).orElse(null);
 	}
 
 }

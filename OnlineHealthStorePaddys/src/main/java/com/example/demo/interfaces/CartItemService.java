@@ -8,7 +8,7 @@ import com.example.demo.model.ShoppingCart;
 public interface CartItemService {
 	
 //	List<CartItem> findByShoppingCartCartId(int cartId);
-//	CartItem findByItemItemId(int itemId);
+	CartItem findByCartItemId(int cartItemId);
 	CartItem addCartItem(CartItem cartItem);
 	void removeCartItem(int cartItemId);
 	void removeAllCartItems(List<CartItem> cartItems);

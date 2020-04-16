@@ -32,11 +32,7 @@ public class ShoppingCart implements ShoppingCartInterface{
 	@OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
-	
-	
-  ///  List<ItemInterface> itemList = new ArrayList<ItemInterface>();  
-
-	
+		
 	
 	public double calculateTotal() {
 		double total = 0;
@@ -103,23 +99,24 @@ public class ShoppingCart implements ShoppingCartInterface{
 
 	@Override
 	public Double getTotalCost() {
-		// TODO Auto-generated method stub
-		return null;
+	Double total = 0.0d;
+	for (CartItemInterface item : cartItems) {
+		total += item.getPrice();
+	}
+	return total;
 	}
 
 	@Override
 	public void addCartItem(CartItem cartItem) {
-		cartItems.add(cartItem);
-		
+		cartItems.add(cartItem);	
 	}
 
 	@Override
-	public void removeCartItem(CartItem cartItem) {
+	public void removeCartItem(int cartItem) {
 		cartItems.remove(cartItem);		
 	}
 
 	public void addItemToCart(Item item) {
-		// TODO Auto-generated method stub
 		List<Item> items = new ArrayList<>();
 		items.add(item);
 	}

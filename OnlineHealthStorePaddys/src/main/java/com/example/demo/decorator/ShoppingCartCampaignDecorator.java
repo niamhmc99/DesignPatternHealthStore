@@ -29,7 +29,7 @@ public class ShoppingCartCampaignDecorator implements ShoppingCartInterface{
 	}
 
 	@Override
-	public void removeCartItem(CartItem  cartItem) {
+	public void removeCartItem(int  cartItem) {
 		delegate.removeCartItem(cartItem);		
 	}
 
