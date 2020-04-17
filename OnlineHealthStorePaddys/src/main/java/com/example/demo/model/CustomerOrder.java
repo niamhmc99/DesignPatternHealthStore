@@ -63,4 +63,10 @@ public class CustomerOrder {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public void addItem(Item item) {
+		// TODO Auto-generated method stub
+		items.add(item);
+		
+	}
+
 }

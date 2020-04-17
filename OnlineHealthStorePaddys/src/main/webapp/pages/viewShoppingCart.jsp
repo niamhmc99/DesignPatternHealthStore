@@ -23,11 +23,19 @@
 			</div>
 		</form>
 		
-		<form action="/placeOrder" class="form-inline">
+		<security:authorize access="hasAnyRole('ROLE_USER')"> 
+			<spring:url value="/placeOrder" var="placeOrder" /> 
+	
+			<button class="btn btn-primary" 
+                   onclick="location.href='${placeOrder}'"><h3>Place Order</h3></button>
+		</security:authorize>
+		
+		
+	<%-- 	<form action="/placeOrder" class="form-inline">
 			<div class="form-group mb-2">
 				<input type="submit" value="Place Order" class="btn btn-primary" />
 			</div>
-		</form>
+		</form> --%>
 		<div>
 		<div class="card">
 			<div class="card card-body">

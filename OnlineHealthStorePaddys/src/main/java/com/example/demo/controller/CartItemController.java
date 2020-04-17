@@ -62,15 +62,11 @@ public class CartItemController {
 				cartItem.setQuantity(cartItem.getQuantity() + 1);
 				cartItem.setPrice(cartItem.getQuantity() * cartItem.getItem().getPrice());
 				cartItemService.addCartItem(cartItem);
-				System.out.println("Result if it goes through if statement");
-
 				return "itemList";
 			}
 		}
 		
 			CartItem cartItem = new CartItem();
-			System.out.println("Result if item doesnt exist before");
-
 			cartItem.setQuantity(1);
 			cartItem.setItem(item);
 			cartItem.setPrice(item.getPrice() * 1);

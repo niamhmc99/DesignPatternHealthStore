@@ -58,7 +58,6 @@ public class ItemServiceImpl implements ItemService{
 
 	@Override
 	public Item editItem(Item item) {
-		// TODO Auto-generated method stub
 		itemRepo.save(item);
 		Optional<Item> item1 = itemRepo.findById(item.getItemId());
 	        if (item1.isPresent()) {

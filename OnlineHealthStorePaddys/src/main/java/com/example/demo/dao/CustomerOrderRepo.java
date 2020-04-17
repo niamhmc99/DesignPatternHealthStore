@@ -6,6 +6,4 @@ import com.example.demo.model.CustomerOrder;
 
 public interface CustomerOrderRepo extends CrudRepository<CustomerOrder, Integer>{
 
-	void addCustomerOrder(CustomerOrder customerOrder);
-
 }

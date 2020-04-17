@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.ShoppingCartRepo;
-import com.example.demo.dao.impl.ShoppingCartRepoImpl;
 import com.example.demo.interfaces.ShoppingCartService;
 import com.example.demo.model.ShoppingCart;
 

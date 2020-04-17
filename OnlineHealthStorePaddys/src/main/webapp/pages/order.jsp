@@ -15,19 +15,11 @@
 
 		<div class="container">
 			<h2>
-				Your Cart Total is: Euro <span th:utext="${total}"></span>
+				Your Cart Total is: Euro  <td>${total}</td>
 			</h2>
 		</div>
-
-		<!-- <form action="/payment" class="form-inline">
-			<div class="form-group mb-2">
-				<input type="submit" value="Proceed To Payment"
-					class="btn btn-primary" />
-			</div>
-		</form> -->
-
-		<form th:action="@{/placeOrder}" method="POST" th:object="${customerOrder}">
-			<input type="hidden" name="total" th:value="${total}" />
+		<form action="/placeOrder" method="POST" object="${customerOrder}">
+			<input type="hidden" name="total" value="${total}" />
 			<div class="alert alert-danger" id="error-alert-order" role="alert"
 				th:if="${errorMessage}">
 				Not enough stock!

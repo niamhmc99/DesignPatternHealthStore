@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,17 +20,11 @@ public class CustomerOrderServiceImpl implements CustomerOrderService{
 	@Autowired 
 	private ShoppingCartServiceImpl cartService;
 
-//	@Override
-//	public CustomerOrder findById(int orderId) {
-//		// TODO Auto-generated method stub
-//		return orderRepo.findById(orderId).orElse(null);
-//	}
-//
-//	@Override
-//	public void saveOrder(CustomerOrder order) {
-//		// TODO Auto-generated method stub
-//		orderRepo.save(order);
-//	}
+	@Override
+	public CustomerOrder findById(int orderId) {
+		// TODO Auto-generated method stub
+		return orderRepo.findById(orderId).orElse(null);
+	}
 
 	@Override
 	public double getCustomerOrderTotal(int cartId) {
@@ -45,8 +40,22 @@ public class CustomerOrderServiceImpl implements CustomerOrderService{
 
 	@Override
 	public void addCustomerOrder(CustomerOrder customerOrder) {
-		// TODO Auto-generated method stub
-		
+		orderRepo.save(customerOrder);		
+	}
+
+	public CustomerOrder editOrder(CustomerOrder order) {
+		orderRepo.save(order);
+		Optional<CustomerOrder> order1 = orderRepo.findById(order.getOrderId());
+	        if (order1.isPresent()) {
+	            CustomerOrder o = order1.get();
+	            o.setUser(order.getUser());
+	            o.setItems(order.getItems());
+	            o.setAddress(order.getAddress());
+	            o.setOrderTotal(order.getOrderTotal());
+	            return orderRepo.save(o);
+	        } else {
+	            return null;
+	        }		
 	}
 
 }

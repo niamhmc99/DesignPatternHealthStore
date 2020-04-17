@@ -105,4 +105,12 @@ public class User {
 	public void setShoppingCart(ShoppingCart shoppingCart) {
 		this.shoppingCart = shoppingCart;
 	}
+
+	public List<CustomerOrder> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<CustomerOrder> orders) {
+		this.orders = orders;
+	}
 }
