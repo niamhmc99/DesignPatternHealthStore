@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.dao.ItemRepo;
 import com.example.demo.interfaces.ItemService;
+import com.example.demo.model.CartItem;
 import com.example.demo.model.Item;
 
 @Service
@@ -39,15 +40,15 @@ public class ItemServiceImpl implements ItemService{
 		return itemRepo.findByTitle(title);
 	}
 	
-	public void updateStock(ArrayList<Item> cartItems) {
-//		for (int i = 0; i < cartItems.size(); i++) {
-//			CartItems cartItem = cartItems.get(i);
-//			Item item = cartItem.getItem();
-//
-//			int stockLevel = item.getStock() - cartItem.getQuantity();
-//			item.setStock(stockLevel);
-//			this.addItem(item);
-//		}
+	public void updateStock(ArrayList<CartItem> cartItems) {
+		for (int i = 0; i < cartItems.size(); i++) {
+			CartItem cartItem = cartItems.get(i);
+			Item item = cartItem.getItem();
+
+			int stockLevel = (int) (item.getAvailable() - cartItem.getQuantity());
+			item.setAvailable(stockLevel);
+			this.editItem(item);
+		}
 	}
 
 	@Override

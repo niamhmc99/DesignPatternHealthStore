@@ -63,7 +63,7 @@ public class CartItem implements CartItemInterface{
 	public void setQuantity(int quanity) {
 		this.quantity = quanity;
 	}
-	@Override
+
 	public double getPrice() {
 		return price;
 	}

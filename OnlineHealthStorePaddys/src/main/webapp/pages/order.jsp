@@ -18,7 +18,8 @@
 				Your Cart Total is: Euro  <td>${total}</td>
 			</h2>
 		</div>
-		<form action="/placeOrder" method="POST" object="${customerOrder}">
+		
+		<form:form action="/placeOrder" method="POST" modelAttribute="customerOrder">
 			<input type="hidden" name="total" value="${total}" />
 			<div class="alert alert-danger" id="error-alert-order" role="alert"
 				th:if="${errorMessage}">
@@ -77,7 +78,7 @@
 			</div>
 			<button type="submit" class="btn btn-lg btn-secondary btn-block">Pay
 				Now</button>
-		</form>
+		</form:form>
 
 	</div>
 

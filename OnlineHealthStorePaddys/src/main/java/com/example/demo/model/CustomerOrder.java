@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.example.demo.payment.PaymentMethod;
+
 @Entity
 public class CustomerOrder {
 
@@ -67,6 +69,10 @@ public class CustomerOrder {
 		// TODO Auto-generated method stub
 		items.add(item);
 		
+	}
+	public boolean pay(PaymentMethod method, ShoppingCart shoppingCart) {
+		double totalCost = shoppingCart.calculateTotal();
+		return method.pay(totalCost);
 	}
 
 }

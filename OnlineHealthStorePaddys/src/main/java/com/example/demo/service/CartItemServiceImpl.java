@@ -38,4 +38,10 @@ public class CartItemServiceImpl implements CartItemService{
 		// TODO Auto-generated method stub
 		return cartItemRepo.findById(cartItemId).orElse(null);
 	}
+
+	public void emptyCart(List<CartItem> list) {
+		// TODO Auto-generated method stub
+		cartItemRepo.deleteAll(list);
+		
+	}
 }

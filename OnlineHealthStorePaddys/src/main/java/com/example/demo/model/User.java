@@ -112,5 +112,6 @@ public class User {
 
 	public void setOrders(List<CustomerOrder> orders) {
 		this.orders = orders;
-	}
+	}	
+	
 }
