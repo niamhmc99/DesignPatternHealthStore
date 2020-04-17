@@ -20,7 +20,7 @@ import com.example.demo.decorator.CartItemInterface;
 import com.example.demo.decorator.ShoppingCartInterface;
 
 @Entity
-public class ShoppingCart implements ShoppingCartInterface{
+public class ShoppingCart{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -32,6 +32,7 @@ public class ShoppingCart implements ShoppingCartInterface{
 	@OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
+	private double totalPrice;
 		
 	
 	public double calculateTotal() {
@@ -47,12 +48,6 @@ public class ShoppingCart implements ShoppingCartInterface{
 		return total;
 	}
 	
-	public ShoppingCart(int shoppingCartId, List<CartItem> cartItems, User user) {
-		super();
-		this.shoppingCartId = shoppingCartId;
-		this.cartItems = cartItems;
-		this.user = user;
-	}
 
 	public int getShoppingCartId() {
 		return shoppingCartId;
@@ -81,15 +76,7 @@ public class ShoppingCart implements ShoppingCartInterface{
 	public ShoppingCart() {
 		
 	}
-//	public Double getTotalCost() {
-//	   Double total = 0.0d;
-//	   for (CartItemInterface item : itemList) {
-//	            total += item.getPrice();
-//	        }
-//	        return total;
-//		}
 
-	@Override
 	public Collection<CartItemInterface> getShoppingListItems() {
 		//This method uses a decorator pattern also. Collections$UnmodifiableCollection is its wrapper. 
         //that class is not visible from this package.        return Collections.unmodifiableCollection(itemList);
@@ -97,28 +84,37 @@ public class ShoppingCart implements ShoppingCartInterface{
 	}
 
 
-	@Override
-	public Double getTotalCost() {
-	Double total = 0.0d;
-	for (CartItemInterface item : cartItems) {
-		total += item.getPrice();
-	}
-	return total;
-	}
+//	@Override
+//	public Double getTotalCost() {
+//	Double total = 0.0d;
+//	for (CartItemInterface item : cartItems) {
+//		total += item.getPrice();
+//	}
+//	return total;
+//	}
 
-	@Override
-	public void addCartItem(CartItem cartItem) {
-		cartItems.add(cartItem);	
-	}
-
-	@Override
-	public void removeCartItem(int cartItem) {
-		cartItems.remove(cartItem);		
-	}
+//	@Override
+//	public void addCartItem(CartItem cartItem) {
+//		cartItems.add(cartItem);	
+//	}
+//
+//	@Override
+//	public void removeCartItem(int cartItem) {
+//		cartItems.remove(cartItem);		
+//	}
 
 	public void addItemToCart(Item item) {
 		List<Item> items = new ArrayList<>();
 		items.add(item);
+	}
+
+	public void setTotalPrice(double grandTotal) {
+		this.totalPrice= grandTotal;		
+	}
+
+
+	public double getTotalPrice() {
+		return totalPrice;
 	}
 	
 

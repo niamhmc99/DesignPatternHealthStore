@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.ShoppingCartRepo;
+import com.example.demo.dao.impl.ShoppingCartRepoImpl;
 import com.example.demo.interfaces.ShoppingCartService;
 import com.example.demo.model.ShoppingCart;
 
@@ -20,15 +21,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
 		cartRepo.save(shoppingCart);
 	}
 
-	
-	public ShoppingCart findByUserEmail(String email) {
-		// TODO Auto-generated method stub
-		return cartRepo.findByUserEmail(email);
-	}
-
+	@Override
 	public ShoppingCart findById(int id) {
 		// TODO Auto-generated method stub
 		return cartRepo.findById(id).orElse(null);
 	}
+
+
 
 }

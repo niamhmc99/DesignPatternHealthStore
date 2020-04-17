@@ -28,6 +28,9 @@ public class User {
 	    @ManyToMany(cascade = CascadeType.ALL)
 	    private List<Item> items_purchased = new ArrayList<Item>();
 	
+		
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<CustomerOrder> orders;
 
 	public User () {
 		

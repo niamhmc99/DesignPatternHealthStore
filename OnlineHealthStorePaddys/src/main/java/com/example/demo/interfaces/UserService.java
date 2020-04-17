@@ -11,11 +11,7 @@ public interface UserService {
 	 
 	  User findByUsername(String username);
 	  
-	  
 	    public Iterable<User> findAll();
-
-	    public Item findOne(int id);
-
 	    public User deleteById(int id);
 
 //	    public User create(User user);
