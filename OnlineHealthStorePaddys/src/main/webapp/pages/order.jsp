@@ -19,6 +19,12 @@
 			</h2>
 		</div>
 		
+			<div class="container">
+			<h2>
+				Your Cart Total with Discount: Euro  <td>${totalWithDiscount}</td>
+			</h2>
+		</div>
+		
 		<form:form action="/placeOrder" method="POST" modelAttribute="customerOrder">
 			<input type="hidden" name="total" value="${total}" />
 			<div class="alert alert-danger" id="error-alert-order" role="alert"

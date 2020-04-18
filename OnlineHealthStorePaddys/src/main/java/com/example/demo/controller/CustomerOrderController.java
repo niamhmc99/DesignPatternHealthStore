@@ -47,8 +47,6 @@ public class CustomerOrderController {
 	@Autowired
 	private CartItemServiceImpl cartItemsService;
 	
-	
-    // GET: Review Cart to confirm.
 	@RequestMapping(value = "/placeOrder", method = RequestMethod.GET)	
 	public String placeOrder(Model model) {
 		CustomUserDetail myUserDetails = (CustomUserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -65,9 +63,12 @@ public class CustomerOrderController {
 			total = total + (item.getPrice() * cartItem.getQuantity());
 		}
 
+		double totalWithDiscount = cart.calculateDiscount(total);
 		model.addAttribute("cart", cart);
 		model.addAttribute("cartItems", cartItems);
 		model.addAttribute("total", total);
+		model.addAttribute("totalWithDiscount", totalWithDiscount);
+
 		return "order";
 	}
 	

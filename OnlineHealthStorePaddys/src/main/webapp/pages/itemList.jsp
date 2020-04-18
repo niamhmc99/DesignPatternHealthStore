@@ -19,7 +19,7 @@
 <%-- <link rel="icon" type="image/x-icon"
 	href="<c:url value="/resources/images/healthy_living.jpg"/>" /> --%>
 
-	<c:url value="/webapp/WEB-INF/resource/images/healthy_living.jpg" var="logo"/>
+	<c:url value="/OnlineHealthStorePaddys/src/main/webapp/WEB-INF/resource/images/healthy_living.jpg" var="logo"/>
 </head>
 
 <body>

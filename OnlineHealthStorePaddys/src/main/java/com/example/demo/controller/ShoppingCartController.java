@@ -47,8 +47,6 @@ public class ShoppingCartController {
 		ShoppingCart cart = user.getShoppingCart();
 		
 		List<CartItem> cartItems = cart.getCartItems();		
-		//cartItems.addAll(cart.getCartItems());
-		
 		double total = 0;
 		for (int i = 0; i < cartItems.size(); i++) {
 			CartItem cartItem = cartItems.get(i);

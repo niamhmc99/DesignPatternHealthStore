@@ -1,10 +1,8 @@
 package com.example.demo.model;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,8 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.example.demo.decorator.CartItemInterface;
-import com.example.demo.decorator.ShoppingCartInterface;
+import com.example.demo.discount.Over100EuroDiscount;
+import com.example.demo.discount.SecondDiscount;
 
 @Entity
 public class ShoppingCart{
@@ -37,7 +35,7 @@ public class ShoppingCart{
 	
 	public double calculateTotal() {
 		double total = 0;
-		ArrayList<CartItemInterface>cartItems = new ArrayList<>();
+		ArrayList<CartItem>cartItems = new ArrayList<>();
 		cartItems.addAll(this.getCartItems());
 		
 		for(int i = 0; i < cartItems.size(); i++) {
@@ -77,31 +75,12 @@ public class ShoppingCart{
 		
 	}
 
-	public Collection<CartItemInterface> getShoppingListItems() {
+	public Collection<CartItem> getShoppingListItems() {
 		//This method uses a decorator pattern also. Collections$UnmodifiableCollection is its wrapper. 
         //that class is not visible from this package.        return Collections.unmodifiableCollection(itemList);
         return Collections.unmodifiableCollection(cartItems);
 	}
 
-
-//	@Override
-//	public Double getTotalCost() {
-//	Double total = 0.0d;
-//	for (CartItemInterface item : cartItems) {
-//		total += item.getPrice();
-//	}
-//	return total;
-//	}
-
-//	@Override
-//	public void addCartItem(CartItem cartItem) {
-//		cartItems.add(cartItem);	
-//	}
-//
-//	@Override
-//	public void removeCartItem(int cartItem) {
-//		cartItems.remove(cartItem);		
-//	}
 
 	public void addItemToCart(Item item) {
 		List<Item> items = new ArrayList<>();
@@ -115,6 +94,15 @@ public class ShoppingCart{
 
 	public double getTotalPrice() {
 		return totalPrice;
+	}
+
+
+	public double calculateDiscount(double total) {
+
+		Over100EuroDiscount over100Discount = new Over100EuroDiscount();
+		SecondDiscount secondDiscount = new SecondDiscount(over100Discount);
+		double discount = secondDiscount.apply(total);
+		return discount;
 	}
 	
 

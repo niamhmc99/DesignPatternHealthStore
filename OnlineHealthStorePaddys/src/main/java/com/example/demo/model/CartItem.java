@@ -7,12 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import com.example.demo.decorator.CartItemInterface;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class CartItem implements CartItemInterface{
+public class CartItem {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,7 +45,6 @@ public class CartItem implements CartItemInterface{
 		this.quantity = quantity;
 		}
 
-	@Override
 	public int getCartItemId() {
 		return cartItemId;
 	}
@@ -55,7 +52,6 @@ public class CartItem implements CartItemInterface{
 	public void setCartItemId(int cartItemId) {
 		this.cartItemId = cartItemId;
 	}
-	@Override
 	public int getQuantity() {
 		return quantity;
 	}
