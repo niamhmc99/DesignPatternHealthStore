@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.dao.ItemRepo;
 import com.example.demo.model.Item;
 import com.example.demo.service.ItemServiceImpl;
+import com.example.demo.sortItems.SortItemByCategory;
+import com.example.demo.sortItems.SortItemByManufacturer;
+import com.example.demo.sortItems.SortItemByPrice;
+import com.example.demo.sortItems.SortItemByTitle;
+import com.example.demo.sortItems.Sorting;
 
 
 @Controller
@@ -87,20 +94,91 @@ public class ItemController {
 		redirectAttributes.addFlashAttribute("msg", "Item is deleted!");
 		return "redirect:/getAllItems";
 	}
-	
-
 	@RequestMapping(value = "/items/{itemId}/update", method = RequestMethod.GET)
 	public String showUpdateItemForm(@PathVariable("itemId") int itemId, Model model) {
 		Optional<Item> item = itemRepo.findById(itemId);
 		model.addAttribute("itemForm", item);		
 		return "editItem";
-
 	}
-
+	
 	@GetMapping("/getAllItems")
-	public String listItems(Model model, @RequestParam(defaultValue="")  String title) {
-		model.addAttribute("items", itemService.findByTitle(title));
-		System.out.println(model.addAttribute("items", itemService.findAll()));
+	public String listItems(Model model){
+		model.addAttribute("items", itemService.findAll());
+		return "itemList";
+	}
+	
+	@RequestMapping(value ="/AscendingByName", method = RequestMethod.GET)
+	public String ascendByName(Model model) {
+		Sorting sorting = new Sorting();
+		sorting.setSortingMethod(new SortItemByTitle());
+		List<Item> items = (List<Item>) itemService.findAll();
+		sorting.ascendingSort(items);
+		model.addAttribute("items", items);
+		return "itemList";
+	}
+	@RequestMapping(value ="/DecendingByName", method = RequestMethod.GET)
+	public String decendByName(Model model) {
+		Sorting sorting = new Sorting();
+		sorting.setSortingMethod(new SortItemByTitle());
+		List<Item> items = (List<Item>) itemService.findAll();
+		sorting.descendingSort(items);
+		model.addAttribute("items", items);
+		return "itemList";
+	}
+	@RequestMapping(value ="/AscendingByCategory", method = RequestMethod.GET)
+	public String ascendByCategory(Model model) {
+		Sorting sorting = new Sorting();
+		sorting.setSortingMethod(new SortItemByCategory());
+		List<Item> items = (List<Item>) itemService.findAll();
+		sorting.ascendingSort(items);
+		model.addAttribute("items", items);
+		return "itemList";
+	}
+	@RequestMapping(value ="/DecendingByCategory", method = RequestMethod.GET)
+	public String decendByCategory(Model model) {
+		Sorting sorting = new Sorting();
+		sorting.setSortingMethod(new SortItemByCategory());
+		List<Item> items = (List<Item>) itemService.findAll();
+		sorting.descendingSort(items);
+		model.addAttribute("items", items);
+		return "itemList";
+	}
+	
+	@RequestMapping(value ="/AscendingByPrice", method = RequestMethod.GET)
+	public String ascendByPrice(Model model) {
+		Sorting sorting = new Sorting();
+		sorting.setSortingMethod(new SortItemByPrice());
+		List<Item> items = (List<Item>) itemService.findAll();
+		sorting.ascendingSort(items);
+		model.addAttribute("items", items);
+		return "itemList";
+	}
+	@RequestMapping(value ="/DecendingByPrice", method = RequestMethod.GET)
+	public String decendByPrice(Model model) {
+		Sorting sorting = new Sorting();
+		sorting.setSortingMethod(new SortItemByPrice());
+		List<Item> items = (List<Item>) itemService.findAll();
+		sorting.descendingSort(items);
+		model.addAttribute("items", items);
+		return "itemList";
+	}
+	
+	@RequestMapping(value ="/AscendingByManufacturer", method = RequestMethod.GET)
+	public String ascendByMan(Model model) {
+		Sorting sorting = new Sorting();
+		sorting.setSortingMethod(new SortItemByManufacturer());
+		List<Item> items = (List<Item>) itemService.findAll();
+		sorting.ascendingSort(items);
+		model.addAttribute("items", items);
+		return "itemList";
+	}
+	@RequestMapping(value ="/DecendingByManufacturer", method = RequestMethod.GET)
+	public String decendByMan(Model model) {
+		Sorting sorting = new Sorting();
+		sorting.setSortingMethod(new SortItemByManufacturer());
+		List<Item> items = (List<Item>) itemService.findAll();
+		sorting.descendingSort(items);
+		model.addAttribute("items", items);
 		return "itemList";
 	}
 }

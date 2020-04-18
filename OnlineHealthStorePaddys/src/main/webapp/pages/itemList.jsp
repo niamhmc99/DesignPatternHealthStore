@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
+
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -16,14 +17,12 @@
 <title>Item Management</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-<%-- <link rel="icon" type="image/x-icon"
-	href="<c:url value="/resources/images/healthy_living.jpg"/>" /> --%>
 
-	<c:url value="/OnlineHealthStorePaddys/src/main/webapp/WEB-INF/resource/images/healthy_living.jpg" var="logo"/>
+	<c:url value="resources/images/healthy_living.jpg" var="logo"/> 
 </head>
 
 <body>
- <img src="/webapp/WEB-INF/resource/images/healthy_living.jpg">
+ <img src="/resources/images/healthy_living.jpg" var="logo">
  
 	<div class="container" id="itemTable" layout:fragment="content"
 		style="width: 1145px; margin-bottom: 180px;">
@@ -73,8 +72,8 @@
 							src="<c:url value="/resource/images/items/${item.itemId}.jpg"/>"
 							style="width: 100px; height: 90px;  ${item.title}"/></td>
 						<td>${item.itemId}</td>
-						<td>${item.category}</td>
 						<td>${item.title}</td>
+						<td>${item.category}</td>
 						<td>${item.price}</td>
 						<td>${item.manufacturer}</td>
 						
@@ -103,6 +102,32 @@
 				</c:forEach>
 			</tbody>
 		</table>
+	</div>
+	<div>
+		<form action="/AscendingByName" method="GET" class="form-inline my-2 my-lg-0">
+			<button class="btn btn-secondary my-2 my-sm-0" type="submit">Filter By Item Title A-Z</button>
+		</form>
+		<form action="/DecendingByName" method="GET" class="form-inline my-2 my-lg-0">
+			<button class="btn btn-secondary my-2 my-sm-0" type="submit">Filter By Item Title Z-A</button>
+		</form>
+		<form action="/AscendingByPrice" method="GET" class="form-inline my-2 my-lg-0">
+			<button class="btn btn-secondary my-2 my-sm-0" type="submit">Filter By Price 0-100</button>
+		</form>
+		<form action="/DecendingByPrice" method="GET" class="form-inline my-2 my-lg-0">
+			<button class="btn btn-secondary my-2 my-sm-0" type="submit">Filter By Price 100-0</button>
+		</form>
+		<form action="/AscendingByCategory" method="GET" class="form-inline my-2 my-lg-0">
+			<button class="btn btn-secondary my-2 my-sm-0" type="submit">Filter By Category A-Z</button>
+		</form>
+		<form action="/DecendingByCategory" method="GET" class="form-inline my-2 my-lg-0">
+			<button class="btn btn-secondary my-2 my-sm-0" type="submit">Filter By Category Z-A</button>
+		</form>
+		<form action="/AscendingByManufacturer" method="GET" class="form-inline my-2 my-lg-0">
+			<button class="btn btn-secondary my-2 my-sm-0" type="submit">Filter By Manufacturer A-Z</button>
+		</form>
+		<form action="/DecendingByManufacturer" method="GET" class="form-inline my-2 my-lg-0">
+			<button class="btn btn-secondary my-2 my-sm-0" type="submit">Filter By Manufacturer Z-A</button>
+		</form>
 	</div>
 
 </body>

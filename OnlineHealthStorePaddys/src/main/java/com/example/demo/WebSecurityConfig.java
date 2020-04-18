@@ -41,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/resources/**", "/registration", "/welcome", "/getAllItems", "/order", "/visaSuccess", "/masterCardSuccess", "/searchComments", "/submitReview").permitAll()
+                .antMatchers("/resources/**", "/resources/images/**", "/registration", "/welcome", "/getAllItems", "/order", "/visaSuccess", "/masterCardSuccess", "/searchComments", "/submitReview").permitAll()
         		.antMatchers("/profile").hasAnyRole("ROLE_ADMIN, ROLE_USER")
         		.antMatchers("/orderList","/order", "/accountInfo", "/addItem").access("hasAnyRole('ROLE_ADMIN')")
                 .anyRequest().authenticated()
@@ -56,56 +56,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .exceptionHandling()
             	.accessDeniedPage("/error");       
 
-        // The pages requires login as ADMIN.
-        // If no login, it will redirect to /login page.
-//        http.authorizeRequests().antMatchers("/orderList","/order", "/accountInfo")//
-//                .access("hasAnyRole('ROLE_ADMIN')");
-        // .antMatchers("/getAllItems").access("hasAnyRole('ROLE_USER')")
-
-        // For ADMIN only.
-      //  http.authorizeRequests().antMatchers("/item").access("hasRole('ROLE_ADMIN')");
-  
-        // When the user has logged in as XX.
-        // But access a page that requires role YY,
-        // AccessDeniedException will throw.
-       // http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/error");
     }
-    
-//	protected void configure(HttpSecurity http) throws Exception {
-//		http.authorizeRequests()
-//		.antMatchers("/register", "/homepage", "/about", "/login", "/css/**", "/webjars/**").permitAll()
-//		.antMatchers("/Admin").hasAnyRole("USER,ADMIN")
-//		//.antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest().authenticated()
-////		.antMatchers("/css/**").permitAll()
-////		.antMatchers("/Admin").hasAuthority("ADMIN").anyRequest().authenticated()
-//		.and().csrf().disable()
-//		.formLogin().loginPage("/login").failureUrl("/login?error=true")
-//		.defaultSuccessUrl("/homepage")
-//		.usernameParameter("email")
-//		.passwordParameter("password");
-////		.and().logout()
-////		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-////		.logoutSuccessUrl("/")
-////		.and().rememberMe()
-////		.tokenRepository(persistentTokenRepository())
-////		.tokenValiditySeconds(60 * 60)
-////		.and().exceptionHandling().accessDeniedPage("/access_denied");
-//	}
-
- 
-//
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.
-//        jdbcAuthentication()
-//        .usersByUsernameQuery(usersQuery)
-//        .authoritiesByUsernameQuery(rolesQuery)
-//        .dataSource(dataSource)
-//        .passwordEncoder(bCryptPasswordEncoder());
-//
-//// In memory authentication
-//auth.inMemoryAuthentication()
-//        .withUser(adminUsername).password(adminPassword).roles("ADMIN");
-//        //auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
-//    }
 }

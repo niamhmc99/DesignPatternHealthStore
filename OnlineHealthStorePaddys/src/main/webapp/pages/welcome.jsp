@@ -62,24 +62,14 @@
       <li class="nav-item"  sec:authorize="hasRole('ROLE_USER')">
         <a class="nav-link" href="/viewShoppingCart">View Cart</a>
       </li>
-   
-      <!-- </li>  <li class="nav-item">
-        <a class="nav-link" href="/sample">About</a>
-      </li>
-      <li class="nav-item"   sec:authorize="isAuthenticated()"  >
-        <a class="nav-link" href="/events">Events</a>
-      </li>
-      <li class="nav-item"   sec:authorize="hasRole('ROLE_USER')"  >
-        <a class="nav-link" href="/trips">Trips</a>
-      </li> -->
     </ul>
     <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post"  sec:authorize="isAuthenticated()">
       <input class="form-control mr-sm-2" type="hidden" /> 
         <h2><a onclick="document.forms['logoutForm'].submit()"><u>Logout</u></a></h2>
-<!--       <button class="btn btn-secondary my-2 my-sm-0" type="submit">Logout</button>-->    
 	</form>
   </div>
 </nav>
+ <img src="/resources/images/healthy_living.jpg" var="logo">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 
