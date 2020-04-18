@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,12 +10,17 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.interfaces.SecurityService;
+import com.example.demo.model.CartItem;
+import com.example.demo.model.CustomUserDetail;
+import com.example.demo.model.CustomerOrder;
+import com.example.demo.model.Item;
 import com.example.demo.model.ShoppingCart;
 import com.example.demo.model.User;
 import com.example.demo.service.ShoppingCartServiceImpl;
@@ -76,9 +83,7 @@ public class UserController {
     @GetMapping("/users")
     public String listUsers(Model model, @RequestParam(defaultValue="")  String username) { 
 		model.addAttribute("users", userService.findByUsername(username));
-	    System.out.println("Sizee" + userService.findAll().size()); 
-	    System.out.println("Find by username" + userService.findByUsername(username)); 
-		System.out.println(model.addAttribute("users", userService.findAll()));
+		model.addAttribute("users", userService.findAll());
 		return "listOfUsers";
 	}
     
@@ -95,4 +100,14 @@ public class UserController {
         model.addAttribute("userDetails", userDetails);
         return "user";
     }
+    
+	@RequestMapping(value = "/orderHistory/{userId}", method = RequestMethod.GET)
+	public String viewOrderHistory(Model model, @PathVariable(value = "userId") int userId) {
+		User user = userService.findUserById(userId);
+		List<CustomerOrder> orders = user.getOrders();		
+			
+		model.addAttribute("orders", orders);
+		model.addAttribute("user", user);
+		return "orderHistory";
+	}
 }

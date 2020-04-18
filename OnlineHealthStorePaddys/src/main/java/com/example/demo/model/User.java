@@ -23,11 +23,6 @@ public class User {
 	 
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private ShoppingCart shoppingCart; 
-	
-	 @LazyCollection(LazyCollectionOption.FALSE)
-	    @ManyToMany(cascade = CascadeType.ALL)
-	    private List<Item> items_purchased = new ArrayList<Item>();
-	
 		
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<CustomerOrder> orders;

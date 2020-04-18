@@ -1,9 +1,12 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{fragments/main_layout}">
+<html>
 	
 <head>
 <meta charset="UTF-8">
@@ -31,6 +34,12 @@
             			<th>Username</th>
             			<th>Email</th>
             			<th>Address</th>
+            			<th>
+            			<security:authorize
+							 access="hasAnyRole('ROLE_ADMIN')">
+					 	View Order History
+					</security:authorize>
+					</th>
         			</tr>
     			</thead>
     			<tbody>
@@ -40,6 +49,15 @@
 		            <td>${user.username}</td>
             		<td>${user.email}</td>
              		<td>${user.address}</td>
+             		<td>
+             		<security:authorize access="hasAnyRole('ROLE_ADMIN')"> 
+					<spring:url value="/orderHistory/${user.userId}" var="orderHistoryUrl" /> 
+	
+						<button class="btn btn-primary" 
+                                          onclick="location.href='${orderHistoryUrl}'">View</button>
+					</security:authorize>
+					</td>
+				
         		</tr>  
         		</c:forEach>  
     			</tbody>

@@ -102,8 +102,8 @@
 				</c:forEach>
 			</tbody>
 		</table>
-	</div>
-	<div>
+	</div>	
+		<security:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"> 
 		<form action="/AscendingByName" method="GET" class="form-inline my-2 my-lg-0">
 			<button class="btn btn-secondary my-2 my-sm-0" type="submit">Filter By Item Title A-Z</button>
 		</form>
@@ -128,7 +128,6 @@
 		<form action="/DecendingByManufacturer" method="GET" class="form-inline my-2 my-lg-0">
 			<button class="btn btn-secondary my-2 my-sm-0" type="submit">Filter By Manufacturer Z-A</button>
 		</form>
-	</div>
-
+		</security:authorize>
 </body>
 </html>

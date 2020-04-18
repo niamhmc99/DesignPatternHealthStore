@@ -56,6 +56,7 @@ public class ShoppingCartController {
 
 		model.addAttribute("cartItems", cartItems);
 		model.addAttribute("total", total);
+		model.addAttribute("shoppingCart", cart);
 		return "viewShoppingCart";
 	}
 	

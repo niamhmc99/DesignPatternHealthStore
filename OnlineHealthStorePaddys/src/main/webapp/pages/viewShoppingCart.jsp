@@ -29,13 +29,7 @@
 			<button class="btn btn-primary" 
                    onclick="location.href='${placeOrder}'"><h3>Place Order</h3></button>
 		</security:authorize>
-		
-		
-	<%-- 	<form action="/placeOrder" class="form-inline">
-			<div class="form-group mb-2">
-				<input type="submit" value="Place Order" class="btn btn-primary" />
-			</div>
-		</form> --%>
+
 		<div>
 		<div class="card">
 			<div class="card card-body">
@@ -69,12 +63,11 @@
 		</div>
 		</div>
 		<div>
-		<security:authorize access="hasAnyRole('ROLE_USER')"> 
-			<spring:url value="/shoppingCart/removeAllItems/${shoppingCartId}" var="removeAllCartItems" /> 
+		
+			<spring:url value="/shoppingCart/removeAllItems/${shoppingCart.shoppingCartId}" var="removeAllCartItems" /> 
 	
 			<button class="btn btn-primary" 
                    onclick="location.href='${removeAllCartItems}'"><h3>Remove All Items from the Cart</h3></button>
-		</security:authorize>
 		</div>
 		<div class="container">
 			<h2>Your Cart Total is: Euro <td>${total}</td></h2>

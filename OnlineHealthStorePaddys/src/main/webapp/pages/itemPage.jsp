@@ -23,12 +23,6 @@
 			<table class="table table-bordered" id="item">
 				<tbody>
 
-					<%-- <tr>
-						<td>Item Image</td>
-						<td><img
-							src="<c:url value="/resource/images/items/${itemObj.itemId}.jpg"/>"
-							width="40%" alt="${itemObj.title}" /></td>
-					</tr> --%>
 					<tr>
 						<td>Item ID</td>
 						<td>${itemObj.itemId }</td>
