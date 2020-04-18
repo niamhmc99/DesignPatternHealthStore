@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.demo.dao.ItemRepo;
 import com.example.demo.interfaces.ItemService;
 import com.example.demo.model.CartItem;
+import com.example.demo.model.Comment;
 import com.example.demo.model.Item;
 
 @Service
@@ -69,11 +70,18 @@ public class ItemServiceImpl implements ItemService{
 	            i.setCategory(item.getCategory());
 	            i.setImage(item.getImage());
 	            i.setAvailable(item.getAvailable());
-
+	            i.setComments(item.getComments());
 	            return itemRepo.save(i);
 	        } else {
 	            return null;
 	        }
+	}
+	
+	@Override
+	public List<Comment> getCommentForItem(int newId) {
+		Item item =this.findItemById(newId);
+		
+		return item.getComments();
 	}
 
 }

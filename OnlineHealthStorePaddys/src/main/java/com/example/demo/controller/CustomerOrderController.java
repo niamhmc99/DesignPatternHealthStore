@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,7 +27,6 @@ import com.example.demo.payment.Visa;
 import com.example.demo.service.CartItemServiceImpl;
 import com.example.demo.service.CustomerOrderServiceImpl;
 import com.example.demo.service.ItemServiceImpl;
-import com.example.demo.service.ShoppingCartServiceImpl;
 import com.example.demo.service.UserServiceImpl;
 
 @Controller
@@ -39,9 +35,6 @@ public class CustomerOrderController {
 	@Autowired 
 	private CustomerOrderServiceImpl orderService;
 	
-	@Autowired
-	private ShoppingCartServiceImpl shoppingCartService;
-
 	@Autowired
 	private ItemServiceImpl itemService;
 
@@ -58,7 +51,6 @@ public class CustomerOrderController {
     // GET: Review Cart to confirm.
 	@RequestMapping(value = "/placeOrder", method = RequestMethod.GET)	
 	public String placeOrder(Model model) {
-		System.out.print("In first place order method");
 		CustomUserDetail myUserDetails = (CustomUserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	    Integer userId=myUserDetails.getUser().getUserId(); 
 		User user = userService.findUserById(userId);
@@ -81,7 +73,6 @@ public class CustomerOrderController {
 	
 	@RequestMapping(value = "/placeOrder", method = RequestMethod.POST)
 	public String order(Model model, @Valid @ModelAttribute("customerOrder") CustomerOrder customerOrder, @RequestParam("total") double total, HttpServletRequest request) {
-		System.out.print("In secong post place order method");
 		String view = "";
 		CustomUserDetail myUserDetails = (CustomUserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	    Integer userId=myUserDetails.getUser().getUserId(); 

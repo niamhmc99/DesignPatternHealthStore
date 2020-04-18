@@ -60,18 +60,14 @@
 							<div>
 							
 							<security:authorize access="hasAnyRole('ROLE_USER')"> 
-							<spring:url value="/shoppingCart/add/${itemOnj.itemId}" var="addToCartUrl" /> 
+							<spring:url value="/shoppingCart/add/${itemObj.itemId}" var="addToCartUrl" /> 
 							<button class="btn btn-primary" 
                                           onclick="location.href='${addToCartUrl}'">Add Item</button>
                              </security:authorize>
-								<%-- <security:authorize access="hasRole('ROLE_USER')">
-									<a href="#" ng-click="/shoppingCart/add/(${itemObj.itemId})"
-										class="btn btn-info"
-										style="margin-top: 0px; width: 150px; float: left; margin-right: 31px;">
-										<span class="glyphicon glyphicon-shopping-cart"></span>
-									</a>
-								</security:authorize> --%>
-								
+								<form:form action="/viewComments" method="POST">
+									<input type="hidden" name="itemId" id="itemId" value="${itemObj.itemId}" />
+									<button type="submit" class="purchase-button">View Comments/Reviews</button>
+							</form:form>
 								<div>
 							        <a class="nav-link" href="/getAllItems">Continue Shopping</a>
 								

@@ -1,8 +1,13 @@
 package com.example.demo.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -13,6 +18,10 @@ public class Item{
 	private String title, manufacturer, category, image;
 	private double price;
     private long available;
+    
+	@OneToMany(fetch = FetchType.EAGER)
+	private List<Comment> comments = new ArrayList<>();
+
 
 	
 	
@@ -78,6 +87,12 @@ public class Item{
 	}
 	public void setAvailable(long available) {
 		this.available = available;
+	}
+	public List<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 	
 
