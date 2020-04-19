@@ -26,7 +26,7 @@
 		<p>The List of Items in the Health Food Store</p>
 		
 			<div class="form-group mb-2">
-					 <input type="text" id="myInput" onkeyup="searchItems()" placeholder="Search for names.." title="Type in a name"/>
+					 <input type="text" id="myInput" onkeyup="searchItems()" placeholder="Search.." title="Type in a name"/>
 			</div>
 		
 		
