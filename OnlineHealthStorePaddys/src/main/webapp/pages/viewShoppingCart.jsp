@@ -5,8 +5,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
-	
-<%@ include file="navBar.jsp"%>
+
 	
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -14,20 +13,19 @@
 <title>View Shopping Cart</title>
 </head>
 <body>
+
+ <jsp:include page="welcome.jsp" />
 <div layout:fragment="content" class="container mySpace">
-		<form action="getItemById/${item.itemId}" class="form-inline">
-			<div class="form-group mb-2">
-				<input type="text" class="form-control" name="title"
-					placeholder="Search Item Title" /> <input type="submit" value="Search"
-					class="btn btn-primary" />
-			</div>
-		</form>
+
 		
 		<security:authorize access="hasAnyRole('ROLE_USER')"> 
 			<spring:url value="/placeOrder" var="placeOrder" /> 
 	
 			<button class="btn btn-primary" 
-                   onclick="location.href='${placeOrder}'"><h3>Place Order</h3></button>
+                   onclick="location.href='${placeOrder}'"><h3>Checkout</h3></button>
+                   <li> Discount's applied at checkout: </li>
+                   <li> &euro;5 off if you spend over &euro;90</li>
+                   <li> Spend over &euro;100 receive 20&#37; Off</li>
 		</security:authorize>
 
 		<div>

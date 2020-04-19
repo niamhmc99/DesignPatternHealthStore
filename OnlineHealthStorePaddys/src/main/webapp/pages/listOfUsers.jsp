@@ -15,20 +15,18 @@
 </head>
 <body>
 
-<jsp:include page="header.jsp" />
+
+ <jsp:include page="welcome.jsp" />
 
 	<div layout:fragment="content" class="container mySpace">
-		<form action="/users" class="form-inline">
 			<div class="form-group mb-2">
-				<input type="text" class="form-control" name="username"
-					placeholder="Search User" /> <input type="submit" value="Search"
-					class="btn btn-primary" />
+			  <input type="text" id="myInput" onkeyup="searchUsers()" placeholder="Search for names.." title="Type in a name"/>
 			</div>
-		</form>
+
 	<div class="card">
 		<div class="card card-body">
 		<h1 align="center">List of Registered Users</h1>
-    		<table class="table table-hover" border="1" cellpadding="10">
+    		<table class="table table-hover" border="1" cellpadding="10" id ="userList">
     			<thead>
        				 <tr>
             			<th>Username</th>
@@ -65,5 +63,35 @@
     	</div>
 	</div>
 	</div>
+	<script>
+	function searchUsers() {
+  		var input, filter, table, tr, td, i, txtValue;
+  		input = document.getElementById("myInput");
+  		filter = input.value.toUpperCase();
+  		table = document.getElementById("userList");
+  		tr = table.getElementsByTagName("tr");
+  		th = table.getElementsByTagName("th")
+  		
+  		for (i = 1; i < tr.length; i++) {
+
+          	tr[i].style.display = "none";
+  				for(var j= 0 ; j<th.length;j++)
+  	  		    {
+    				td = tr[i].getElementsByTagName("td")[j];
+
+    				if (td) 
+    				{
+      					txtValue = td.textContent || td.innerText;
+      					if (txtValue.toUpperCase().indexOf(filter) > -1) 
+          				{
+       					 tr[i].style.display = "";
+        				break;
+      					} 
+    				} 
+    			}
+  			}
+		}
+	</script>
+	
 </body>
 </html>

@@ -11,23 +11,24 @@
 <!DOCTYPE html>
 
 <html>	
-<%@ include file="navBar.jsp"%>
 <head>
 <meta charset="UTF-8">
 <title>Item Management</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-
-	<c:url value="resources/images/healthy_living.jpg" var="logo"/> 
 </head>
 
 <body>
- <img src="/resources/images/healthy_living.jpg" var="logo">
+ <jsp:include page="welcome.jsp" />
  
 	<div class="container" id="itemTable" layout:fragment="content"
 		style="width: 1145px; margin-bottom: 180px;">
 		<h2>Item Management</h2>
 		<p>The List of Items in the Health Food Store</p>
+		
+			<div class="form-group mb-2">
+					 <input type="text" id="myInput" onkeyup="searchItems()" placeholder="Search for names.." title="Type in a name"/>
+			</div>
+		
 		
 		<security:authorize access="hasAnyRole('ROLE_ADMIN')"> 
 			<spring:url value="/item/addItem" var="addItemUrl" /> 
@@ -40,7 +41,7 @@
 			<spring:url value="/viewShoppingCart" var="viewShoppingCart" /> 
 	
 			<button class="btn btn-primary" 
-                   onclick="location.href='${viewShoppingCart}'"><h2>View Shopping Cart</h2></button>
+                   onclick="location.href='${viewShoppingCart}'">View Shopping Cart</button>
 		</security:authorize>
 			
 		<table class="table table-hover" border="1" cellpadding="10" id="itemList">
@@ -129,5 +130,35 @@
 			<button class="btn btn-secondary my-2 my-sm-0" type="submit">Filter By Manufacturer Z-A</button>
 		</form>
 		</security:authorize>
+		
+		<script>
+	function searchItems() {
+  		var input, filter, table, tr, td, i, txtValue;
+  		input = document.getElementById("myInput");
+  		filter = input.value.toUpperCase();
+  		table = document.getElementById("itemList");
+  		tr = table.getElementsByTagName("tr");
+  		th = table.getElementsByTagName("th")
+  		
+  		for (i = 1; i < tr.length; i++) {
+
+          	tr[i].style.display = "none";
+  				for(var j= 0 ; j<th.length;j++)
+  	  		    {
+    				td = tr[i].getElementsByTagName("td")[j];
+
+    				if (td) 
+    				{
+      					txtValue = td.textContent || td.innerText;
+      					if (txtValue.toUpperCase().indexOf(filter) > -1) 
+          				{
+       					 tr[i].style.display = "";
+        				break;
+      					} 
+    				} 
+    			}
+  			}
+		}
+</script>
 </body>
 </html>

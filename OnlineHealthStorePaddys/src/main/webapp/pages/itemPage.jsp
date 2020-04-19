@@ -5,7 +5,7 @@
 
 <%@ page isELIgnored="false"%>
 
-<%@ include file="navBar.jsp"%>
+
 <!DOCTYPE>
 <html>
 <head>
@@ -16,6 +16,8 @@
 
 </head>
 <body>
+
+ <jsp:include page="welcome.jsp" />
 	<div>
 		<div class="container" style="width: 829px">
 			<h2>Item Details</h2>

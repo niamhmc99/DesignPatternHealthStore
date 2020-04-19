@@ -11,10 +11,8 @@
 </head>
 <body>
  
- <div> <jsp:include page="header.jsp" /> </div>
-   
-<%--    <jsp:include page="_menu.jsp" />
- --%> 
+ <div> <jsp:include page="welcome.jsp" /> </div>
+
    <div class="page-title"><h1>Account Info</h1></div>
  
    <div class="account-container">

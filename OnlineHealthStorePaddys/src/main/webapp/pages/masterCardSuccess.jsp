@@ -9,6 +9,7 @@
 <title>Master Card Success</title>
 </head>
 <body>
+ <jsp:include page="welcome.jsp" />
 
   	<div  layout:fragment="content" class="container mySpace">
           <div class="alert alert-success">

@@ -15,9 +15,7 @@
 </head>
 <body>
 
-
-
-<%@ include file="navBar.jsp"%>
+ <jsp:include page="welcome.jsp" />
 	<div class="container" style="margin-bottom: 19px">
 		<h1 class="well">Update Item!</h1>
 		<div class="col-lg-12 well">

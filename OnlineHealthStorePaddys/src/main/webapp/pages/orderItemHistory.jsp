@@ -5,15 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="navBar.jsp"%>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <title>Order Item History</title>
 </head>
 <body>
-
-
+ <jsp:include page="welcome.jsp" />
 <div class="card">
 			<div class="card card-body">
 				<table class="table table-hover" border="1" cellpadding="10">

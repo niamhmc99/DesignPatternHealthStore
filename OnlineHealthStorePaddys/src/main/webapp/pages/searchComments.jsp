@@ -5,7 +5,7 @@
 <!DOCTYPE>
 <html>
 <head>
-<%@ include file="navBar.jsp"%>
+
 
 <meta charset="UTF-8">
 <title>View/ Submit Comments</title>
@@ -14,6 +14,7 @@
 </head>
 <body>
 
+ <jsp:include page="welcome.jsp" />
 <div id="gig-list">
 		<div class="item">
 			<div class="start">

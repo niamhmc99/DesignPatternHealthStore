@@ -14,21 +14,15 @@
 </head>
 <body>
 
-  <jsp:include page="navBar.jsp" />
-
-
   <div class="container">
     <c:if test="${pageContext.request.userPrincipal.name != null}">
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
         <div class="site-name">Online Health Food Store</div>
-        
-
         <h2>Welcome <a href="${pageContext.request.contextPath}/accountInfo">${pageContext.request.userPrincipal.name} 
-        <a href="${pageContext.request.contextPath}/accountInfo"> </a>  ||      
-        
-        <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+        <a href="${pageContext.request.contextPath}/accountInfo"> </a>     
+
     </c:if>
   </div>
   
@@ -41,20 +35,14 @@
       <li class="nav-item active">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item"    sec:authorize="!isAuthenticated()">
-        <a class="nav-link" href="/register">Register</a>
-      </li>
-      <li class="nav-item"  sec:authorize="!isAuthenticated()">
-        <a class="nav-link" href="/login">Log in</a>
-      </li>
       <li class="nav-item"   sec:authorize="isAuthenticated()"  >
-        <a class="nav-link" href="/profile">Profile</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/accountInfo">Profile</a>
       </li>
         <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
         <a class="nav-link" href="/users">Users</a>
         </li>
         <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-        <a class="nav-link" href="/addItem">Add Item</a>
+        <a class="nav-link" href="/item/addItem">Add Item</a>
         </li>
         <li class="nav-item">
         <a class="nav-link" href="/getAllItems">View All Items</a>
@@ -69,7 +57,7 @@
 	</form>
   </div>
 </nav>
- <img src="/resources/images/healthy_living.jpg" var="logo">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 

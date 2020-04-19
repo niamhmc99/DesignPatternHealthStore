@@ -9,9 +9,8 @@
  
 </head>
 <body>
- 
- 
-   <jsp:include page="header.jsp" />
+
+ <jsp:include page="welcome.jsp" />
    <div class="page-title"></div>
    
    <h2>Access Denied!</h2>

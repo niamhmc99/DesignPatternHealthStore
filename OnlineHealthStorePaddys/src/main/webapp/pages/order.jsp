@@ -11,6 +11,8 @@
 <title>Order Details</title>
 </head>
 <body>
+
+ <jsp:include page="welcome.jsp" />
 <div layout:fragment="content" class="container mySpace">
 
 		<div class="container">
