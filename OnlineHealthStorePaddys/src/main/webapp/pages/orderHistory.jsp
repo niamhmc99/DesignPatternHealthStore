@@ -34,13 +34,6 @@
  						<td>${order.address}</td>
  						<td>${order.orderTotal}</td>
  						<td>${order.paymentMethod}</td>
- 						
- 							
-							<td>			
-							<spring:url value="/orderHistoryItemDetails/${order.orderId}" var="orderHistoryItemDetails" /> 
-	
-							<button class="btn btn-primary" 
-                                          onclick="location.href='${orderHistoryItemDetails}'"> Order History Items </button></td>
 					</tr>
 					</c:forEach>
 					</tbody>

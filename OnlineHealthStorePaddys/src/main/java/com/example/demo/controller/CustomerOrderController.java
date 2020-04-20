@@ -90,8 +90,8 @@ public class CustomerOrderController {
 			CustomerOrder order = new CustomerOrder();
 			order.setUser(user);
 			order.setItems(items);
-	order.setOrderTotal(total);
-	orderService.addCustomerOrder(order);
+			order.setOrderTotal(total);
+			orderService.addCustomerOrder(order);
 	
 			if (request.getParameter("payment_method").equals("Visa")) {
 
@@ -103,7 +103,6 @@ public class CustomerOrderController {
 					customerOrderService.addCustomerOrder(order);
 					itemService.updateStock(cart_items);
 					cartItemsService.emptyCart(shoppingCart.getCartItems());
-					System.out.println("Visa Sucesss");
 
 					view = "visaSuccess";
 				} else {
@@ -123,8 +122,6 @@ public class CustomerOrderController {
 					customerOrderService.addCustomerOrder(order);
 					itemService.updateStock(cart_items);
 					cartItemsService.emptyCart(shoppingCart.getCartItems());
-					System.out.println("Master Sucesss");
-
 					view = "masterCardSuccess";
 				} else {
 					String mastercardError = "";
@@ -136,14 +133,4 @@ public class CustomerOrderController {
 			}
 			return view;
 	}
-	
-	@RequestMapping(value = "/orderItemHistory/{orderId}", method = RequestMethod.GET)
-	public String viewOrderHistory(Model model, @PathVariable(value = "orderId") int orderId) {
-		CustomerOrder order = orderService.findById(orderId);
-		Set<Item> orderItems = order.getItems();		
-			
-		model.addAttribute("items", orderItems);
-		return "orderItemHistory";
-	}
-
 }
